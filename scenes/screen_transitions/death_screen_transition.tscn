@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bww56gw1qg1sr"]
+
+[ext_resource type="Script" uid="uid://c7rsmumtjwgnp" path="res://scripts/scene_managment/screen_transitions/death_screen_transition.gd" id="1_27136"]
+
+[node name="Death Screen Transition" type="CanvasLayer" unique_id=1508196330]
+script = ExtResource("1_27136")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=923926781]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=24774177]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -20.0
+offset_right = 150.0
+offset_bottom = 20.0
+text = "you died"
+horizontal_alignment = 1
+vertical_alignment = 1

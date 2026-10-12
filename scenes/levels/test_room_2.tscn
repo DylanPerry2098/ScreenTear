@@ -1,0 +1,31 @@
+[gd_scene format=4 uid="uid://dcn7d027l05ky"]
+
+[ext_resource type="Texture2D" uid="uid://cb781g0q384rp" path="res://assets/icon.svg" id="1_pw5fa"]
+[ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="2_pw5fa"]
+[ext_resource type="PackedScene" uid="uid://bxj6esjtluq2p" path="res://scenes/gizmos/room_transition_area_2d.tscn" id="3_crne1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oqbmf"]
+texture = ExtResource("1_pw5fa")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[sub_resource type="TileSet" id="TileSet_i31h3"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_oqbmf")
+
+[node name="TestRoom2" type="Node2D" unique_id=2089002660]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1719518811]
+tile_map_data = PackedByteArray("AAAAAAgAAQAAAAAAAAABAAgAAQAAAAAAAAACAAgAAQAAAAAAAAAJAAgAAQAAAAAAAAAKAAgAAQAAAAAAAAALAAgAAQAAAAAAAAAMAAgAAQAAAAAAAAANAAgAAQAAAAAAAAAOAAgAAQAAAAAAAAAIAAgAAQAAAAAAAAAHAAgAAQAAAAAAAAAGAAgAAQAAAAAAAAAFAAgAAQAAAAAAAAAEAAgAAQAAAAAAAAADAAgAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAcAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAANAAAAAQAAAAAAAAAOAAAAAQAAAAAAAAAOAAEAAQAAAAAAAAAOAAIAAQAAAAAAAAAOAAMAAQAAAAAAAAAOAAQAAQAAAAAAAAAOAAUAAQAAAAAAAAAOAAYAAQAAAAAAAAAOAAcAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAUAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAABAAYAAQAAAAAAAAACAAYAAQAAAAAAAAAEAAQAAQAAAAAAAAALAAQAAQAAAAAAAAANAAYAAQAAAAAAAAAGAAcAAQAAAAAAAAAKAAYAAQAAAAAAAAAKAAcAAQAAAAAAAAAFAAQAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_i31h3")
+
+[node name="Player" parent="." unique_id=366328777 instance=ExtResource("2_pw5fa")]
+position = Vector2(840, 856)
+
+[node name="RoomTransitionArea2D" parent="." unique_id=735689747 instance=ExtResource("3_crne1")]
+position = Vector2(160, 960)
+target_scene = "uid://0tkgly1g3kah"
+direction = 2
+size = 128.0
