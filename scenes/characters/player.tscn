@@ -14,9 +14,6 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i31h3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ahet1"]
-radius = 22.022715
-
 [node name="Player" type="CharacterBody2D" unique_id=366328777 node_paths=PackedStringArray("state_machine", "state_idle", "state_run", "state_jump", "state_fall", "state_land")]
 collision_layer = 3
 script = ExtResource("1_b26j0")
@@ -71,16 +68,14 @@ unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[node name="Flashlight" parent="." unique_id=1496237813 instance=ExtResource("10_7vyk4")]
+[node name="LightCenter" type="Node2D" parent="." unique_id=810472179]
+
+[node name="Flashlight" parent="LightCenter" unique_id=1496237813 instance=ExtResource("10_7vyk4")]
 position = Vector2(22, 0)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1678463297]
-shape = SubResource("CircleShape2D_ahet1")
-disabled = true
-
-[node name="Illumination" type="PointLight2D" parent="." unique_id=612784230]
-position = Vector2(16.025412, -0.7913718)
+[node name="Illumination" type="PointLight2D" parent="LightCenter" unique_id=612784230]
+position = Vector2(1.5, 0)
 rotation = -3.1415925
-scale = Vector2(0.28784972, 0.19633159)
+scale = Vector2(0.18611793, 0.2064088)
 energy = 1.85
 texture = ExtResource("11_2l4js")

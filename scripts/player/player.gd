@@ -5,6 +5,7 @@ class_name Player extends CharacterBody2D
 @export var gravity := 2000.0
 
 @onready var coyote_timer: Timer = $CoyoteTimer
+@onready var light_center: Node2D = $LightCenter
 
 @export var state_machine: StateMachine
 @export var state_idle: State
@@ -61,3 +62,5 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.update(delta)
+	#light_path.progress_ratio
+	light_center.look_at(get_global_mouse_position())

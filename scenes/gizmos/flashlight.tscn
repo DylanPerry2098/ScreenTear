@@ -6,9 +6,9 @@
 [node name="Flashlight" type="Node2D" unique_id=1496237813]
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=21381727]
-position = Vector2(300, -5)
 energy = 4.5
 texture = ExtResource("1_n646v")
+offset = Vector2(300, -5)
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=725536074]
 scale = Vector2(0.1, 0.1)
