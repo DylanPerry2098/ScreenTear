@@ -28,3 +28,6 @@ size = 128.0
 
 [node name="Player" parent="." unique_id=366328777 instance=ExtResource("3_gyqsl")]
 position = Vector2(888, 824)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=676089084]
+color = Color(0, 0, 0, 1)
