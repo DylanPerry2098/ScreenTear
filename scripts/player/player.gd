@@ -7,6 +7,8 @@ class_name Player extends CharacterBody2D
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var light_center: Node2D = $LightCenter
 
+@export var light_distance:float = 10.0
+
 @export var state_machine: StateMachine
 @export var state_idle: State
 @export var state_run: State
@@ -62,5 +64,4 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.update(delta)
-	#light_path.progress_ratio
 	light_center.look_at(get_global_mouse_position())
