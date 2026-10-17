@@ -74,8 +74,7 @@ interact={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Light"
 2d_physics/layer_4="Light Block"
-2d_physics/layer_5="Pressure Plate"
-2d_physics/layer_6="Interactable Objects"
+2d_physics/layer_7="See Through Physical"
 
 [physics]
 

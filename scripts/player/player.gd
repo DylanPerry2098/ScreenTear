@@ -38,9 +38,10 @@ func _find_spawn_position() -> void:
 	for node in SceneManager.current_main_scene.get_children():
 		if node is RoomTransitionArea2D:
 			if ResourceLoader.get_resource_uid(node.target_scene) == SceneManager.last_main_scene_resource_uid:
-				global_position = node.get_exit_global_pos(%CollisionShape2D.shape.height)
-				if node is RoomTransitionArea2D and node.direction == node.Direction.LEFT:
-					%Sprite2D.flip_h = true
+				print("found spawn location from ",)
+				global_position = node.get_exit_global_pos(%CollisionShape2D.shape.radius)
+				# if node is RoomTransitionArea2D and node.direction == node.Direction.LEFT:
+				# 	%Sprite2D.flip_h = true
 				return
 
 func _physics_process(delta: float) -> void:
