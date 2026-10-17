@@ -81,4 +81,6 @@ position = Vector2(1.5, 0)
 rotation = -3.1415925
 scale = Vector2(0.18611793, 0.2064088)
 energy = 1.85
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.74509805)
 texture = ExtResource("11_2l4js")
