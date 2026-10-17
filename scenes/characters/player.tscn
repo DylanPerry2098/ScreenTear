@@ -17,6 +17,7 @@ radius = 7.0
 
 [node name="Player" type="CharacterBody2D" unique_id=366328777 node_paths=PackedStringArray("state_machine", "state_idle", "state_run", "state_jump", "state_fall", "state_land")]
 collision_layer = 3
+collision_mask = 65
 script = ExtResource("1_b26j0")
 speed = 125.0
 jump_strength = 250.0
@@ -34,6 +35,7 @@ texture = ExtResource("2_2l4js")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=662750080]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_xhtjm")
 
