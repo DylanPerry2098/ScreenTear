@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="3_gyqsl"]
 [ext_resource type="Texture2D" uid="uid://ded8qt6oksnny" path="res://assets/dark_light_block.png" id="3_knmjg"]
 [ext_resource type="PackedScene" uid="uid://cjowb85tb4dkv" path="res://scenes/gizmos/pressure_plate.tscn" id="4_anjkr"]
+[ext_resource type="Script" uid="uid://c6tk7a1lh50pi" path="res://scripts/objects/overhead_light.gd" id="6_sa601"]
+[ext_resource type="Texture2D" uid="uid://876jnbpyig5d" path="res://assets/overhead_light_off.png" id="7_ff50h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_knmjg"]
 texture = ExtResource("1_anjkr")
@@ -30,6 +32,15 @@ sources/1 = SubResource("TileSetAtlasSource_oqbmf")
 sources/0 = SubResource("TileSetAtlasSource_knmjg")
 sources/2 = SubResource("TileSetAtlasSource_asmw1")
 
+[sub_resource type="Gradient" id="Gradient_sa601"]
+offsets = PackedFloat32Array(0, 0.67469877)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s3biy"]
+gradient = SubResource("Gradient_sa601")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="TestRoom" type="Node2D" unique_id=2089002660]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1719518811]
@@ -39,8 +50,21 @@ tile_set = SubResource("TileSet_i31h3")
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=676089084]
 color = Color(0, 0, 0, 1)
 
-[node name="PressurePlate" parent="." unique_id=18738573 instance=ExtResource("4_anjkr")]
+[node name="PressurePlate" parent="." unique_id=18738573 node_paths=PackedStringArray("connected_obj") instance=ExtResource("4_anjkr")]
 position = Vector2(65, 64)
+connected_obj = NodePath("../OverheadLight")
 
 [node name="Player" parent="." unique_id=366328777 instance=ExtResource("3_gyqsl")]
 position = Vector2(128, 48)
+
+[node name="OverheadLight" type="Node2D" parent="." unique_id=52875000]
+script = ExtResource("6_sa601")
+
+[node name="Sprite2D" type="Sprite2D" parent="OverheadLight" unique_id=1795142657]
+position = Vector2(73, 24)
+texture = ExtResource("7_ff50h")
+
+[node name="PointLight2D" type="PointLight2D" parent="OverheadLight" unique_id=1911946011]
+position = Vector2(73, 22.000002)
+scale = Vector2(2.8554683, 2.8554683)
+texture = SubResource("GradientTexture2D_s3biy")
