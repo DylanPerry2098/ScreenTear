@@ -71,7 +71,6 @@ one_shot = true
 [node name="LightCenter" type="Node2D" parent="." unique_id=810472179]
 
 [node name="Flashlight" parent="LightCenter" unique_id=1496237813 instance=ExtResource("10_7vyk4")]
-position = Vector2(22, 0)
 
 [node name="Illumination" type="PointLight2D" parent="LightCenter" unique_id=612784230]
 position = Vector2(1.5, 0)

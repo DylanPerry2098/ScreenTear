@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://be2f24h77roh3"]
 
 [ext_resource type="Texture2D" uid="uid://y6oyhksf6wmd" path="res://assets/torch_light.png" id="1_n646v"]
+[ext_resource type="Script" uid="uid://xsk77kbl6gsi" path="res://scripts/player/flashlight.gd" id="1_nudle"]
 [ext_resource type="Texture2D" uid="uid://cb781g0q384rp" path="res://assets/icon.svg" id="2_yborx"]
 
 [node name="Flashlight" type="Node2D" unique_id=1496237813]
+script = ExtResource("1_nudle")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=21381727]
 energy = 4.5

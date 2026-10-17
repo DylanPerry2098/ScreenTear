@@ -71,6 +71,8 @@ interact={
 
 2d_physics/layer_1="Physical"
 2d_physics/layer_2="Player"
+2d_physics/layer_3="Light"
+2d_physics/layer_4="Light Block"
 
 [physics]
 
