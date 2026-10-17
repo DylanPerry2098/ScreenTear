@@ -23,6 +23,7 @@ func _update_pressed(pressed: bool) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	_update_pressed(true)
+	print("PRESSED")
 
 
 func _on_body_exited(body: Node2D) -> void:
