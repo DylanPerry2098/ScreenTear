@@ -1,8 +1,9 @@
 extends State
-
+@export var jumpsfx: AudioStreamPlayer
 var frames_in_state := 0
 
 func enter(_data: Dictionary) -> void:
+	jumpsfx.play()
 	frames_in_state = 0
 	#animation_player.play("player/jump")
 	parent.velocity.y = -parent.jump_strength

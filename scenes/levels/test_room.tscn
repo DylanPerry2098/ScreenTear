@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bh5mvh4mcrglb" path="res://assets/impermenant_seen.png" id="5_sa601"]
 [ext_resource type="Texture2D" uid="uid://hr65r3elty4s" path="res://assets/glass_block.png" id="6_sa601"]
 [ext_resource type="PackedScene" uid="uid://bxj6esjtluq2p" path="res://scenes/gizmos/room_transition_area_2d.tscn" id="8_ff50h"]
+[ext_resource type="AudioStream" uid="uid://dva26th1i2awv" path="res://Audio/Music/gamepay_theme.wav" id="9_s3biy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s3biy"]
 texture = ExtResource("1_anjkr")
@@ -80,3 +81,7 @@ position = Vector2(40, 120)
 [node name="RoomTransitionArea2D" parent="." unique_id=735689747 instance=ExtResource("8_ff50h")]
 position = Vector2(224, 120)
 target_scene = "uid://csscl0q2a0mke"
+
+[node name="AudioStreamPlayer_BGMusic" type="AudioStreamPlayer" parent="." unique_id=96711758]
+stream = ExtResource("9_s3biy")
+autoplay = true

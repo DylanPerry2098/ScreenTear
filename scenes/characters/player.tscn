@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cp4l5vqxlvnxf" path="res://scripts/state_machine/player/pr_land_state.gd" id="9_op7ga"]
 [ext_resource type="PackedScene" uid="uid://be2f24h77roh3" path="res://scenes/gizmos/flashlight.tscn" id="10_7vyk4"]
 [ext_resource type="Texture2D" uid="uid://drp0dedttahbe" path="res://assets/light_point.webp" id="11_2l4js"]
+[ext_resource type="AudioStream" uid="uid://dfnv55tnebrdd" path="res://Audio/SFX/jump_sfx.mp3" id="12_jk2m4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xhtjm"]
 radius = 7.0
@@ -57,8 +58,9 @@ metadata/_custom_type_script = "uid://chg6ehh37qsh0"
 script = ExtResource("6_bwjto")
 metadata/_custom_type_script = "uid://chg6ehh37qsh0"
 
-[node name="JumpState" type="Node" parent="StateMachine" unique_id=117381630]
+[node name="JumpState" type="Node" parent="StateMachine" unique_id=117381630 node_paths=PackedStringArray("jumpsfx")]
 script = ExtResource("7_606se")
+jumpsfx = NodePath("../../jumpsfx")
 metadata/_custom_type_script = "uid://chg6ehh37qsh0"
 
 [node name="FallState" type="Node" parent="StateMachine" unique_id=465360928]
@@ -86,3 +88,6 @@ energy = 1.85
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.74509805)
 texture = ExtResource("11_2l4js")
+
+[node name="jumpsfx" type="AudioStreamPlayer" parent="." unique_id=475409433]
+stream = ExtResource("12_jk2m4")
