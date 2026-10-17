@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cb781g0q384rp" path="res://assets/icon.svg" id="1_gyqsl"]
 [ext_resource type="PackedScene" uid="uid://bxj6esjtluq2p" path="res://scenes/gizmos/room_transition_area_2d.tscn" id="2_x68ck"]
 [ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="3_gyqsl"]
+[ext_resource type="PackedScene" uid="uid://cjowb85tb4dkv" path="res://scenes/gizmos/pressure_plate.tscn" id="4_anjkr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oqbmf"]
 texture = ExtResource("1_gyqsl")
@@ -31,3 +32,6 @@ position = Vector2(888, 824)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=676089084]
 color = Color(0, 0, 0, 1)
+
+[node name="PressurePlate" parent="." unique_id=18738573 instance=ExtResource("4_anjkr")]
+position = Vector2(740, 1025)
