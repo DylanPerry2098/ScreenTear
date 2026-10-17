@@ -11,6 +11,8 @@ flashlight_length = 150.0
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=21381727]
 scale = Vector2(0.25, 0.25)
 energy = 4.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("1_n646v")
 offset = Vector2(300, -5)
 

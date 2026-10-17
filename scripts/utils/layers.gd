@@ -4,5 +4,6 @@ enum PhysicsLayer {
     PHYSICAL = 1,
     PLAYER = 2,
     LIGHT = 3,
-    LIGHT_BLOCK = 4
+    LIGHT_BLOCK = 4,
+    SEE_THRU_PHYSICAL = 7
 }
