@@ -1,31 +1,83 @@
-[gd_scene format=4 uid="uid://dcn7d027l05ky"]
+[gd_scene format=4 uid="uid://csscl0q2a0mke"]
 
-[ext_resource type="Texture2D" uid="uid://cb781g0q384rp" path="res://assets/icon.svg" id="1_pw5fa"]
+[ext_resource type="Texture2D" uid="uid://bu1bw1dhacfph" path="res://assets/light_block.png" id="1_siir5"]
 [ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="2_pw5fa"]
+[ext_resource type="Texture2D" uid="uid://cimod6todc0ct" path="res://assets/physical_block.png" id="2_ya6n0"]
 [ext_resource type="PackedScene" uid="uid://bxj6esjtluq2p" path="res://scenes/gizmos/room_transition_area_2d.tscn" id="3_crne1"]
+[ext_resource type="Texture2D" uid="uid://ded8qt6oksnny" path="res://assets/dark_light_block.png" id="3_gw7qu"]
+[ext_resource type="Texture2D" uid="uid://2tnhi35ip01" path="res://assets/impermenant.png" id="4_ec2g8"]
+[ext_resource type="Texture2D" uid="uid://bh5mvh4mcrglb" path="res://assets/impermenant_seen.png" id="5_o24ns"]
+[ext_resource type="Texture2D" uid="uid://hr65r3elty4s" path="res://assets/glass_block.png" id="6_k3uv0"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oqbmf"]
-texture = ExtResource("1_pw5fa")
-texture_region_size = Vector2i(128, 128)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_siir5"]
+texture = ExtResource("1_siir5")
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSet" id="TileSet_i31h3"]
-tile_size = Vector2i(128, 128)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_asmw1"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ya6n0"]
+texture = ExtResource("2_ya6n0")
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_asmw1")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gw7qu"]
+texture = ExtResource("3_gw7qu")
+0:0/0 = 0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ec2g8"]
+texture = ExtResource("4_ec2g8")
+0:0/0 = 0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o24ns"]
+texture = ExtResource("5_o24ns")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3uv0"]
+texture = ExtResource("6_k3uv0")
+0:0/0 = 0
+0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_q2ypb"]
+occlusion_layer_0/light_mask = 1
+occlusion_layer_0/sdf_collision = true
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_oqbmf")
+physics_layer_1/collision_layer = 8
+physics_layer_1/collision_mask = 8
+physics_layer_2/collision_layer = 64
+physics_layer_2/collision_mask = 64
+sources/1 = SubResource("TileSetAtlasSource_ya6n0")
+sources/0 = SubResource("TileSetAtlasSource_siir5")
+sources/2 = SubResource("TileSetAtlasSource_gw7qu")
+sources/4 = SubResource("TileSetAtlasSource_o24ns")
+sources/3 = SubResource("TileSetAtlasSource_ec2g8")
+sources/5 = SubResource("TileSetAtlasSource_k3uv0")
 
 [node name="TestRoom2" type="Node2D" unique_id=2089002660]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1719518811]
-tile_map_data = PackedByteArray("AAAAAAgAAQAAAAAAAAABAAgAAQAAAAAAAAACAAgAAQAAAAAAAAAJAAgAAQAAAAAAAAAKAAgAAQAAAAAAAAALAAgAAQAAAAAAAAAMAAgAAQAAAAAAAAANAAgAAQAAAAAAAAAOAAgAAQAAAAAAAAAIAAgAAQAAAAAAAAAHAAgAAQAAAAAAAAAGAAgAAQAAAAAAAAAFAAgAAQAAAAAAAAAEAAgAAQAAAAAAAAADAAgAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAcAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAANAAAAAQAAAAAAAAAOAAAAAQAAAAAAAAAOAAEAAQAAAAAAAAAOAAIAAQAAAAAAAAAOAAMAAQAAAAAAAAAOAAQAAQAAAAAAAAAOAAUAAQAAAAAAAAAOAAYAAQAAAAAAAAAOAAcAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAUAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAABAAYAAQAAAAAAAAACAAYAAQAAAAAAAAAEAAQAAQAAAAAAAAALAAQAAQAAAAAAAAANAAYAAQAAAAAAAAAGAAcAAQAAAAAAAAAKAAYAAQAAAAAAAAAKAAcAAQAAAAAAAAAFAAQAAQAAAAAAAAA=")
-tile_set = SubResource("TileSet_i31h3")
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1516038014]
+offset_right = 256.0
+offset_bottom = 256.0
+color = Color(1, 1, 1, 0.3647059)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=701677251]
+tile_map_data = PackedByteArray("AAAAAAgAAQAAAAAAAAABAAgAAQAAAAAAAAACAAgAAQAAAAAAAAAJAAgAAQAAAAAAAAAMAAgAAQAAAAAAAAANAAgAAQAAAAAAAAAOAAgAAQAAAAAAAAAIAAgAAQAAAAAAAAAHAAgAAQAAAAAAAAAGAAgAAQAAAAAAAAAFAAgABQAAAAAAAAAEAAgABQAAAAAAAAADAAgABQAAAAAAAAAAAAAAAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAcAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAANAAAAAQAAAAAAAAAOAAAAAQAAAAAAAAAOAAEAAQAAAAAAAAAOAAIAAQAAAAAAAAAOAAMAAQAAAAAAAAAOAAQAAQAAAAAAAAAOAAUAAQAAAAAAAAAOAAYAAQAAAAAAAAAOAAcAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAUAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAABAAYAAQAAAAAAAAACAAYAAQAAAAAAAAAEAAQAAQAAAAAAAAAHAAQAAQAAAAAAAAALAAQAAQAAAAAAAAANAAYAAQAAAAAAAAAHAAYAAgAAAAAAAAAHAAcAAgAAAAAAAAAHAAUAAgAAAAAAAAAIAAQAAgAAAAAAAAAJAAQAAgAAAAAAAAAKAAQAAgAAAAAAAAAPAAAAAQAAAAAAAAAPAAEAAQAAAAAAAAAPAAIAAQAAAAAAAAAPAAMAAQAAAAAAAAAPAAQAAQAAAAAAAAAPAAUAAQAAAAAAAAAPAAYAAQAAAAAAAAAPAAcAAQAAAAAAAAAPAAgAAQAAAAAAAAAPAAkAAQAAAAAAAAAPAAoAAQAAAAAAAAAPAAsAAQAAAAAAAAAPAAwAAQAAAAAAAAAPAA0AAQAAAAAAAAAPAA4AAQAAAAAAAAAPAA8AAQAAAAAAAAAAAA8AAQAAAAAAAAABAA8AAQAAAAAAAAACAA8AAQAAAAAAAAADAA8AAQAAAAAAAAAEAA8AAQAAAAAAAAAFAA8AAQAAAAAAAAAGAA8AAQAAAAAAAAAHAA8AAQAAAAAAAAAIAA8AAQAAAAAAAAAJAA8AAQAAAAAAAAAKAA8AAQAAAAAAAAALAA8AAQAAAAAAAAAMAA8AAQAAAAAAAAANAA8AAQAAAAAAAAAOAA8AAQAAAAAAAAAAAAkAAQAAAAAAAAAAAAoAAQAAAAAAAAAAAAsAAQAAAAAAAAAAAAwAAQAAAAAAAAAAAA0AAQAAAAAAAAAAAA4AAQAAAAAAAAAFAAwAAQAAAAAAAAAFAA0AAQAAAAAAAAAGAAwAAQAAAAAAAAAGAA0AAQAAAAAAAAAHAAwAAQAAAAAAAAAHAA0AAQAAAAAAAAAIAAwAAQAAAAAAAAAIAA0AAQAAAAAAAAAJAAwAAQAAAAAAAAAJAA0AAQAAAAAAAAAKAAwAAQAAAAAAAAAKAA0AAQAAAAAAAAALAAwAAQAAAAAAAAALAA0AAQAAAAAAAAAJAAsAAQAAAAAAAAAKAAsAAQAAAAAAAAAGAA4AAwAAAAAAAAAHAA4AAwAAAAAAAAAIAA4AAwAAAAAAAAAJAA4AAwAAAAAAAAA=")
+tile_set = SubResource("TileSet_q2ypb")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=676089084]
+color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." unique_id=366328777 instance=ExtResource("2_pw5fa")]
-position = Vector2(840, 856)
+position = Vector2(104, 116)
 
 [node name="RoomTransitionArea2D" parent="." unique_id=735689747 instance=ExtResource("3_crne1")]
-position = Vector2(160, 960)
+position = Vector2(20, 120)
 target_scene = "uid://0tkgly1g3kah"
 direction = 2
-size = 128.0

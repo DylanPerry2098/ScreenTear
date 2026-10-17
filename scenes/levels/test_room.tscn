@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://2tnhi35ip01" path="res://assets/impermenant.png" id="4_asmw1"]
 [ext_resource type="Texture2D" uid="uid://bh5mvh4mcrglb" path="res://assets/impermenant_seen.png" id="5_sa601"]
 [ext_resource type="Texture2D" uid="uid://hr65r3elty4s" path="res://assets/glass_block.png" id="6_sa601"]
+[ext_resource type="PackedScene" uid="uid://bxj6esjtluq2p" path="res://scenes/gizmos/room_transition_area_2d.tscn" id="8_ff50h"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_knmjg"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s3biy"]
 texture = ExtResource("1_anjkr")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -17,29 +18,29 @@ texture = ExtResource("1_anjkr")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_asmw1"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oqbmf"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_op2op"]
 texture = ExtResource("2_knmjg")
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_asmw1")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_asmw1"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x4gfd"]
 texture = ExtResource("3_knmjg")
 0:0/0 = 0
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ff50h"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ronwj"]
 texture = ExtResource("4_asmw1")
 0:0/0 = 0
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s3biy"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o8emw"]
 texture = ExtResource("5_sa601")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_op2op"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fma50"]
 texture = ExtResource("6_sa601")
 0:0/0 = 0
 0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -52,12 +53,12 @@ physics_layer_1/collision_layer = 8
 physics_layer_1/collision_mask = 8
 physics_layer_2/collision_layer = 64
 physics_layer_2/collision_mask = 64
-sources/1 = SubResource("TileSetAtlasSource_oqbmf")
-sources/0 = SubResource("TileSetAtlasSource_knmjg")
-sources/2 = SubResource("TileSetAtlasSource_asmw1")
-sources/4 = SubResource("TileSetAtlasSource_s3biy")
-sources/3 = SubResource("TileSetAtlasSource_ff50h")
-sources/5 = SubResource("TileSetAtlasSource_op2op")
+sources/1 = SubResource("TileSetAtlasSource_op2op")
+sources/0 = SubResource("TileSetAtlasSource_s3biy")
+sources/2 = SubResource("TileSetAtlasSource_x4gfd")
+sources/4 = SubResource("TileSetAtlasSource_o8emw")
+sources/3 = SubResource("TileSetAtlasSource_ronwj")
+sources/5 = SubResource("TileSetAtlasSource_fma50")
 
 [node name="TestRoom" type="Node2D" unique_id=2089002660]
 
@@ -75,3 +76,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." unique_id=366328777 instance=ExtResource("3_gyqsl")]
 position = Vector2(40, 120)
+
+[node name="RoomTransitionArea2D" parent="." unique_id=735689747 instance=ExtResource("8_ff50h")]
+position = Vector2(224, 120)
+target_scene = "uid://csscl0q2a0mke"

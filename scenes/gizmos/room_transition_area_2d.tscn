@@ -4,12 +4,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwor0"]
 resource_local_to_scene = true
-size = Vector2(64, 192)
+size = Vector2(8, 16)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_l1tjw"]
 resource_local_to_scene = true
-a = Vector2(32, -96)
-b = Vector2(32, 96)
+a = Vector2(4, -8)
+b = Vector2(4, 8)
 
 [node name="RoomTransitionArea2D" type="Area2D" unique_id=735689747]
 collision_layer = 0
@@ -17,10 +17,10 @@ collision_mask = 2
 script = ExtResource("1_l1tjw")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2071215791]
-offset_left = -32.0
-offset_top = -96.0
-offset_right = 32.0
-offset_bottom = 96.0
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+offset_bottom = 8.0
 color = Color(0, 0, 0, 0.56078434)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=269692760]
