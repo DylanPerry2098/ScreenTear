@@ -31,9 +31,6 @@ sources/1 = SubResource("TileSetAtlasSource_oqbmf")
 sources/0 = SubResource("TileSetAtlasSource_knmjg")
 sources/2 = SubResource("TileSetAtlasSource_asmw1")
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_asmw1"]
-friction = 0.1
-
 [node name="TestRoom" type="Node2D" unique_id=2089002660]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1719518811]
@@ -48,9 +45,8 @@ position = Vector2(65, 64)
 scale = Vector2(-10.055366, 1.1472185)
 
 [node name="Player" parent="." unique_id=366328777 instance=ExtResource("3_gyqsl")]
-position = Vector2(128, 48)
+position = Vector2(64, 112)
 
 [node name="CollisionShape2D" parent="." unique_id=1527440110 instance=ExtResource("6_asmw1")]
-position = Vector2(96, 41)
-mass = 0.001
-physics_material_override = SubResource("PhysicsMaterial_asmw1")
+position = Vector2(208, 184)
+mass = 0.1

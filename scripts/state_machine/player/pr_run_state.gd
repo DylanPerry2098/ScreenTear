@@ -37,6 +37,13 @@ func physics_update(_delta: float) -> Transition:
 		play_turn_animation()
 
 	last_x_direction = parent.velocity.x if parent.velocity.x != 0 else last_x_direction
+
+	for i in parent.get_slide_collision_count():
+		var c := parent.get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			var crb := c.get_collider() as RigidBody2D
+			crb.apply_central_impulse(-c.get_normal() * 2)
+
 	return Transition.NONE
 
 func play_turn_animation() -> void:
