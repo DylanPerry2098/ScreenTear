@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bu1bw1dhacfph" path="res://assets/light_block.png" id="1_anjkr"]
 [ext_resource type="Texture2D" uid="uid://cimod6todc0ct" path="res://assets/physical_block.png" id="2_knmjg"]
 [ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="3_gyqsl"]
+[ext_resource type="PackedScene" uid="uid://cjowb85tb4dkv" path="res://scenes/gizmos/pressure_plate.tscn" id="4_anjkr"]
 [ext_resource type="Texture2D" uid="uid://ded8qt6oksnny" path="res://assets/dark_light_block.png" id="3_knmjg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_knmjg"]
@@ -37,6 +38,9 @@ tile_set = SubResource("TileSet_i31h3")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=676089084]
 color = Color(0, 0, 0, 1)
+
+[node name="PressurePlate" parent="." unique_id=18738573 instance=ExtResource("4_anjkr")]
+position = Vector2(740, 1025)
 
 [node name="Player" parent="." unique_id=366328777 instance=ExtResource("3_gyqsl")]
 position = Vector2(128, 48)
