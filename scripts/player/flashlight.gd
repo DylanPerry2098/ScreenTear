@@ -26,7 +26,6 @@ func createCone(degreeCone:float):
 	var halfDegreeCone = round(float(degreeCone)/2)
 	for deg in range(-halfDegreeCone,halfDegreeCone+1,5):
 		_newCast = RayCast2D.new()
-		_newCast.set_collision_mask_value(Layers.PhysicsLayer.PHYSICAL, false)
 		_newCast.set_collision_mask_value(Layers.PhysicsLayer.LIGHT_BLOCK, true)
 		# _newCast.hit_from_inside = true
 		_newCast.target_position = Vector2(flashlight_length,0)
@@ -87,20 +86,30 @@ func _update_lightblocks():
 			var tilemap := collider as TileMapLayer 
 			var collision_point := cr.get_collision_point() + Vector2(1,0).rotated(get_parent().rotation)
 			var tile_coords := tilemap.local_to_map(collision_point)
-			if tilemap.get_cell_source_id(tile_coords) == 2 or tilemap.get_cell_source_id(tile_coords) == 0:
+			var source_id := tilemap.get_cell_source_id(tile_coords)
+			if source_id in [0,2,3,4]:
 				_new_lit_up_tiles[tile_coords] = (collider as TileMapLayer)
+			
 	
 
 	for tile_coords in _new_lit_up_tiles:
 		if tile_coords in _lit_up_tiles: # Tile is already lit up
 			continue
 		else: # Tile needs to be lit up
-			var tilemap := _new_lit_up_tiles[tile_coords] 
-			tilemap.set_cell(tile_coords, 0, Vector2.ZERO)
+			var tilemap := _new_lit_up_tiles[tile_coords]
+			var source_id := tilemap.get_cell_source_id(tile_coords)
+			match source_id:
+				2: tilemap.set_cell(tile_coords, 0, Vector2.ZERO)
+				3: tilemap.set_cell(tile_coords, 4, Vector2.ZERO)
+				_: pass
 	
 	for tile_coords in _lit_up_tiles: # Tile needs to be turned off
 		if tile_coords not in _new_lit_up_tiles:
 			var tilemap := _lit_up_tiles[tile_coords] 
-			tilemap.set_cell(tile_coords, 2, Vector2.ZERO)
+			var source_id := tilemap.get_cell_source_id(tile_coords)
+			match source_id:
+				0: tilemap.set_cell(tile_coords, 2, Vector2.ZERO)
+				4: tilemap.set_cell(tile_coords, -1, Vector2.ZERO)
+				_: pass
 			
 	_lit_up_tiles = _new_lit_up_tiles

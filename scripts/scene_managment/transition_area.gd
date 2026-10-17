@@ -3,9 +3,9 @@ class_name RoomTransitionArea2D extends Area2D
 
 @export_file("*.tscn") var target_scene:String
 
-const FIXED_THICKNESS := 64.0
+const FIXED_THICKNESS := 8.0
 
-const EXIT_DISTANCE := 128.0
+const EXIT_DISTANCE := 16.0
 
 enum Direction {
 	UP,
@@ -22,7 +22,7 @@ enum Direction {
 		return _direction
 
 ## The size of the transition area along its active axis.
-@export var size := 192.0:
+@export var size := 16.0:
 	set(value):
 		_size = max(value, 1.0)
 		_apply_editor_configuration()
@@ -30,7 +30,7 @@ enum Direction {
 		return _size
 
 var _direction: Direction = Direction.RIGHT
-var _size := 192.0
+var _size := 16.0
 
 var _has_unique_collision_shapes := false
 
@@ -110,9 +110,9 @@ func get_exit_global_pos(player_height: float) -> Vector2:
 		Direction.DOWN:
 			return global_position + Vector2(0, -EXIT_DISTANCE * 2)
 		Direction.LEFT:
-			return global_position + Vector2(EXIT_DISTANCE, ((size/2)-(player_height+4.0)))
+			return global_position + Vector2(EXIT_DISTANCE, ((size/2)-(player_height) - 1))
 		Direction.RIGHT:
-			return global_position + Vector2(-EXIT_DISTANCE, ((size/2)-(player_height+4.0)))
+			return global_position + Vector2(-EXIT_DISTANCE, ((size/2)-(player_height) - 1))
 	return global_position
 
 func _ensure_unique_collision_shapes() -> void:
