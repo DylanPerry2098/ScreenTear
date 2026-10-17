@@ -1,10 +1,13 @@
 [gd_scene format=4 uid="uid://c3hrmhinkf4bk"]
 
 [ext_resource type="TileSet" uid="uid://dly4ptcg7muyp" path="res://resources/placeholder.tres" id="1_6iamk"]
+[ext_resource type="Script" uid="uid://dbnhd8i0bfe1a" path="res://scripts/level_1.gd" id="1_6761a"]
 [ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="2_nsrm0"]
 [ext_resource type="PackedScene" uid="uid://cjowb85tb4dkv" path="res://scenes/gizmos/pressure_plate.tscn" id="3_nsrm0"]
+[ext_resource type="PackedScene" uid="uid://bl7ln7l3qi0g4" path="res://scenes/gizmos/cam_transition_area.tscn" id="5_sk5k4"]
 
 [node name="Level1" type="Node2D" unique_id=330516812]
+script = ExtResource("1_6761a")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=156909986]
 offset_right = 256.0
@@ -22,3 +25,15 @@ position = Vector2(32, 232)
 
 [node name="PressurePlate" parent="." unique_id=18738573 instance=ExtResource("3_nsrm0")]
 position = Vector2(153, 240)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=628639797]
+anchor_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 256
+limit_bottom = 256
+
+[node name="CamTransitionArea" parent="." unique_id=2052498669 instance=ExtResource("5_sk5k4")]
+position = Vector2(256, 224)
+
+[connection signal="body_exited" from="CamTransitionArea" to="." method="_on_cam_transition_area_body_exited"]
