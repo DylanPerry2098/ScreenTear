@@ -4,11 +4,11 @@ var land_animation_finished := false
 
 func enter(_data: Dictionary) -> void:
 	parent.velocity.y = 0
-	#animation_player.play("player/land")
+	animation_player.play("land")
 	land_animation_finished = false
-	# await #animation_player.animation_finished
+	await animation_player.animation_finished
 	if _is_active_state():
-		#animation_player.play("player/idle")
+		animation_player.play("idle")
 		land_animation_finished = true
 
 func exit() -> void:

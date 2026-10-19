@@ -6,11 +6,11 @@ var last_x_direction := 0.0
 var frames_without_horizontal_input := 0
 var turn_animation_playing := false
 
-# func enter(_data: Dictionary) -> void:
-	#animation_player.play("player/run_start")
-	#await animation_player.animation_finished
-	# if _is_active_state() and not turn_animation_playing:
-		#animation_player.play("player/run_loop")
+func enter(_data: Dictionary) -> void:
+	animation_player.play("run_start")
+	await animation_player.animation_finished
+	if _is_active_state() and not turn_animation_playing:
+		animation_player.play("run_loop") #indent this line after if implemented
 
 func exit() -> void:
 	last_x_direction = 0

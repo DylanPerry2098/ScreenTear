@@ -3,7 +3,7 @@ extends State
 var touched_the_floor := false
 
 func enter(_data: Dictionary) -> void:
-	#animation_player.play("player/idle")
+	animation_player.play("idle")
 	touched_the_floor = false
 
 func physics_update(_delta: float) -> Transition:
