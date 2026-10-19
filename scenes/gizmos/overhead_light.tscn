@@ -2,24 +2,20 @@
 
 [ext_resource type="Script" uid="uid://c6tk7a1lh50pi" path="res://scripts/objects/overhead_light.gd" id="1_qo8hx"]
 [ext_resource type="Texture2D" uid="uid://876jnbpyig5d" path="res://assets/overhead_light_off.png" id="2_3xinr"]
-
-[sub_resource type="Gradient" id="Gradient_sa601"]
-offsets = PackedFloat32Array(0, 0.67469877)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_s3biy"]
-gradient = SubResource("Gradient_sa601")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[ext_resource type="Texture2D" uid="uid://y6oyhksf6wmd" path="res://assets/torch_light.png" id="4_sh82x"]
 
 [node name="OverheadLight" type="Node2D" unique_id=1548226924]
 script = ExtResource("1_qo8hx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=298854745]
-position = Vector2(73, 24)
+position = Vector2(-0.4999962, 8)
 texture = ExtResource("2_3xinr")
 
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=309566216]
-position = Vector2(73, 22.000002)
-scale = Vector2(2.8554683, 2.8554683)
-texture = SubResource("GradientTexture2D_s3biy")
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1421513578]
+rotation = 1.5707964
+scale = Vector2(0.10369999, 0.25)
+energy = 4.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("4_sh82x")
+offset = Vector2(300, -5)
