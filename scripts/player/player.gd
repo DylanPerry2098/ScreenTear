@@ -9,6 +9,8 @@ class_name Player extends CharacterBody2D
 
 @export var light_distance:float = 10.0
 
+@export var animation_player: AnimationPlayer
+
 @export var state_machine: StateMachine
 @export var state_idle: State
 @export var state_run: State
@@ -26,13 +28,13 @@ func is_falling() -> bool:
 
 func flip_sprite_by_velocity() -> void:
 	if velocity.x != 0:
-		%Sprite2D.flip_h = velocity.x > 0
+		%Sprite2D.flip_h = velocity.x < 0
 
 func _ready() -> void:
 	if SceneManager.last_main_scene_resource_uid:
 		_find_spawn_position()
 
-	state_machine.init(self, null) #$AnimationPlayer)
+	state_machine.init(self, animation_player)
 
 func _find_spawn_position() -> void:
 	for node in SceneManager.current_main_scene.get_children():

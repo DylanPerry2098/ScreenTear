@@ -4,7 +4,7 @@ var frames_in_state := 0
 
 func enter(_data: Dictionary) -> void:
 	frames_in_state = 0
-	#animation_player.play("player/jump")
+	animation_player.play("jump_loop")
 	parent.velocity.y = -parent.jump_strength
 	parent.coyote_timer.stop()
 

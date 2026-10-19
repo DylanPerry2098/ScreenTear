@@ -1,7 +1,7 @@
 extends State
 
 func enter(data: Dictionary) -> void:
-	#animation_player.play("player/fall_loop")
+	animation_player.play("fall_loop")
 	if data.get("coyote_time", false):
 		parent.coyote_timer.start()
 
