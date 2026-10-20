@@ -4,5 +4,13 @@ class_name Stalker extends BaseEnemy
 
 var frozen: bool = false
 
+func _ready() -> void:
+	super()
+	%Area2D.body_entered.connect(_on_body_entered)
+
 func set_freeze(b: bool) -> void:
-    frozen = b
+	frozen = b
+
+func _on_body_entered(body: Node) -> void:
+	if body is Player:
+		body._flashlight_off()
