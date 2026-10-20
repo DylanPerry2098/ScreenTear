@@ -227,9 +227,8 @@ unique_name_in_owner = true
 
 [node name="Illumination" type="PointLight2D" parent="LightCenter" unique_id=612784230]
 unique_name_in_owner = true
-position = Vector2(1.5, 0)
 rotation = -3.1415925
-scale = Vector2(0.18611793, 0.2064088)
+scale = Vector2(0.2, 0.2)
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.74509805)
 texture = ExtResource("11_2l4js")

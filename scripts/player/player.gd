@@ -20,6 +20,8 @@ class_name Player extends CharacterBody2D
 
 static var player_instance: Player
 
+var dying := false
+
 var frames_off_floor := 0
 var _flashlight_turned_off := false
 
@@ -75,7 +77,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	if !_flashlight_turned_off and state_machine.input_handler.flashlight_pressed():
-		_flashlight_off()
+		flashlight_off()
 
 func _process(delta: float) -> void:
 	state_machine.update(delta)
@@ -96,7 +98,7 @@ func _flashlight_on():
 	light_emit_tween.tween_property(%Illumination, "energy", _illumination_start_energy, 0.25)
 	flashlight_width_tween.tween_property(%Flashlight, "scale", Vector2(1,1), 0.25)
 	
-func _flashlight_off():
+func flashlight_off():
 	_flashlight_turned_off = true
 	var flashlight_tween = create_tween()
 	var light_emit_tween = create_tween()
@@ -106,5 +108,25 @@ func _flashlight_off():
 	flashlight_width_tween.tween_property(%Flashlight, "scale", Vector2(1,0), 0.25)
 	
 	await flashlight_tween.finished
+	await get_tree().create_timer(0.5).timeout
+	SceneManager.change_scenes(SceneManager.MainScene.SAME)
+
+
+func death():
+	dying = true
+	_flashlight_turned_off = true
+	var flashlight_tween = create_tween()
+	
+	var flashlight_width_tween = create_tween()
+	var red_light_tween = create_tween()
+	flashlight_tween.tween_property(%Flashlight.get_child(0), "energy", 0.0, 0.25)
+	flashlight_width_tween.tween_property(%Flashlight, "scale", Vector2(1,0), 0.25)
+	red_light_tween.tween_property(%Illumination, "color", Color(1,0,0,1), 0.25)
+	
+	await flashlight_tween.finished
+	
+	var light_emit_tween = create_tween()
+	light_emit_tween.tween_property(%Illumination, "energy", 0.0, 0.25)
+	await light_emit_tween.finished
 	await get_tree().create_timer(0.5).timeout
 	SceneManager.change_scenes(SceneManager.MainScene.SAME)

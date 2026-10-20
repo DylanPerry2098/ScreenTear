@@ -12,5 +12,5 @@ func set_freeze(b: bool) -> void:
 	frozen = b
 
 func _on_body_entered(body: Node) -> void:
-	if body is Player:
-		body._flashlight_off()
+	if body is Player and !body.dying:
+		body.death()
