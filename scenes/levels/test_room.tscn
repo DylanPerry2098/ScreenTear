@@ -1,87 +1,21 @@
 [gd_scene format=4 uid="uid://0tkgly1g3kah"]
 
-[ext_resource type="Texture2D" uid="uid://bu1bw1dhacfph" path="res://assets/light_block.png" id="1_anjkr"]
-[ext_resource type="Texture2D" uid="uid://cimod6todc0ct" path="res://assets/physical_block.png" id="2_knmjg"]
+[ext_resource type="PackedScene" uid="uid://b4wpuqbsh07t4" path="res://scenes/levels/darkness_layer.tscn" id="1_op2op"]
+[ext_resource type="TileSet" uid="uid://dts5m0ui4v7ai" path="res://resources/main_tileset.tres" id="2_asmw1"]
 [ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="3_gyqsl"]
-[ext_resource type="Texture2D" uid="uid://ded8qt6oksnny" path="res://assets/dark_light_block.png" id="3_knmjg"]
-[ext_resource type="Texture2D" uid="uid://2tnhi35ip01" path="res://assets/impermenant.png" id="4_asmw1"]
-[ext_resource type="Texture2D" uid="uid://bh5mvh4mcrglb" path="res://assets/impermenant_seen.png" id="5_sa601"]
-[ext_resource type="Texture2D" uid="uid://hr65r3elty4s" path="res://assets/glass_block.png" id="6_sa601"]
-[ext_resource type="PackedScene" uid="uid://bxj6esjtluq2p" path="res://scenes/gizmos/room_transition_area_2d.tscn" id="8_ff50h"]
-[ext_resource type="AudioStream" uid="uid://dva26th1i2awv" path="res://Audio/Music/gamepay_theme.wav" id="9_s3biy"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s3biy"]
-texture = ExtResource("1_anjkr")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_asmw1"]
-polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_op2op"]
-texture = ExtResource("2_knmjg")
-0:0/0 = 0
-0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_asmw1")
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x4gfd"]
-texture = ExtResource("3_knmjg")
-0:0/0 = 0
-0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ronwj"]
-texture = ExtResource("4_asmw1")
-0:0/0 = 0
-0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o8emw"]
-texture = ExtResource("5_sa601")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fma50"]
-texture = ExtResource("6_sa601")
-0:0/0 = 0
-0:0/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSet" id="TileSet_i31h3"]
-occlusion_layer_0/light_mask = 1
-occlusion_layer_0/sdf_collision = true
-physics_layer_0/collision_layer = 1
-physics_layer_1/collision_layer = 8
-physics_layer_1/collision_mask = 8
-physics_layer_2/collision_layer = 64
-physics_layer_2/collision_mask = 64
-sources/1 = SubResource("TileSetAtlasSource_op2op")
-sources/0 = SubResource("TileSetAtlasSource_s3biy")
-sources/2 = SubResource("TileSetAtlasSource_x4gfd")
-sources/4 = SubResource("TileSetAtlasSource_o8emw")
-sources/3 = SubResource("TileSetAtlasSource_ronwj")
-sources/5 = SubResource("TileSetAtlasSource_fma50")
+[ext_resource type="Script" uid="uid://dpgbf5745cfw5" path="res://scripts/objects/tile_manager.gd" id="8_x4gfd"]
+[ext_resource type="PackedScene" uid="uid://bxv1ksdqyurbf" path="res://scenes/sound/audio_stream_player_bg_music.tscn" id="11_x4gfd"]
 
 [node name="TestRoom" type="Node2D" unique_id=2089002660]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1516038014]
-offset_right = 256.0
-offset_bottom = 256.0
-color = Color(1, 1, 1, 0.3647059)
+[node name="DarknessLayer" parent="." unique_id=749041299 instance=ExtResource("1_op2op")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1719518811]
 tile_map_data = PackedByteArray("AAAAAAgAAQAAAAAAAAABAAgAAQAAAAAAAAACAAgAAQAAAAAAAAAJAAgAAQAAAAAAAAAMAAgAAQAAAAAAAAANAAgAAQAAAAAAAAAOAAgAAQAAAAAAAAAIAAgAAQAAAAAAAAAHAAgAAQAAAAAAAAAGAAgAAQAAAAAAAAAFAAgABQAAAAAAAAAEAAgABQAAAAAAAAADAAgABQAAAAAAAAAAAAAAAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAcAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAANAAAAAQAAAAAAAAAOAAAAAQAAAAAAAAAOAAEAAQAAAAAAAAAOAAIAAQAAAAAAAAAOAAMAAQAAAAAAAAAOAAQAAQAAAAAAAAAOAAUAAQAAAAAAAAAOAAYAAQAAAAAAAAAOAAcAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAUAAQAAAAAAAAAFAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAADAAAAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAABAAYAAQAAAAAAAAACAAYAAQAAAAAAAAAEAAQAAQAAAAAAAAAHAAQAAQAAAAAAAAALAAQAAQAAAAAAAAANAAYAAQAAAAAAAAAHAAYAAgAAAAAAAAAHAAcAAgAAAAAAAAAHAAUAAgAAAAAAAAAIAAQAAgAAAAAAAAAJAAQAAgAAAAAAAAAKAAQAAgAAAAAAAAAPAAAAAQAAAAAAAAAPAAEAAQAAAAAAAAAPAAIAAQAAAAAAAAAPAAMAAQAAAAAAAAAPAAQAAQAAAAAAAAAPAAUAAQAAAAAAAAAPAAYAAQAAAAAAAAAPAAcAAQAAAAAAAAAPAAgAAQAAAAAAAAAPAAkAAQAAAAAAAAAPAAoAAQAAAAAAAAAPAAsAAQAAAAAAAAAPAAwAAQAAAAAAAAAPAA0AAQAAAAAAAAAPAA4AAQAAAAAAAAAPAA8AAQAAAAAAAAAAAA8AAQAAAAAAAAABAA8AAQAAAAAAAAACAA8AAQAAAAAAAAADAA8AAQAAAAAAAAAEAA8AAQAAAAAAAAAFAA8AAQAAAAAAAAAGAA8AAQAAAAAAAAAHAA8AAQAAAAAAAAAIAA8AAQAAAAAAAAAJAA8AAQAAAAAAAAAKAA8AAQAAAAAAAAALAA8AAQAAAAAAAAAMAA8AAQAAAAAAAAANAA8AAQAAAAAAAAAOAA8AAQAAAAAAAAAAAAkAAQAAAAAAAAAAAAoAAQAAAAAAAAAAAAsAAQAAAAAAAAAAAAwAAQAAAAAAAAAAAA0AAQAAAAAAAAAAAA4AAQAAAAAAAAAFAAwAAQAAAAAAAAAFAA0AAQAAAAAAAAAGAAwAAQAAAAAAAAAGAA0AAQAAAAAAAAAHAAwAAQAAAAAAAAAHAA0AAQAAAAAAAAAIAAwAAQAAAAAAAAAIAA0AAQAAAAAAAAAJAAwAAQAAAAAAAAAJAA0AAQAAAAAAAAAKAAwAAQAAAAAAAAAKAA0AAQAAAAAAAAALAAwAAQAAAAAAAAALAA0AAQAAAAAAAAAJAAsAAQAAAAAAAAAKAAsAAQAAAAAAAAAGAA4AAwAAAAAAAAAHAA4AAwAAAAAAAAAIAA4AAwAAAAAAAAAJAA4AAwAAAAAAAAA=")
-tile_set = SubResource("TileSet_i31h3")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=676089084]
-color = Color(0, 0, 0, 1)
+tile_set = ExtResource("2_asmw1")
+script = ExtResource("8_x4gfd")
 
 [node name="Player" parent="." unique_id=366328777 instance=ExtResource("3_gyqsl")]
 position = Vector2(40, 120)
 
-[node name="RoomTransitionArea2D" parent="." unique_id=735689747 instance=ExtResource("8_ff50h")]
-position = Vector2(224, 120)
-target_scene = "uid://csscl0q2a0mke"
-
-[node name="AudioStreamPlayer_BGMusic" type="AudioStreamPlayer" parent="." unique_id=96711758]
-stream = ExtResource("9_s3biy")
-autoplay = true
+[node name="AudioStreamPlayer_BGMusic" parent="." unique_id=1090977874 instance=ExtResource("11_x4gfd")]
