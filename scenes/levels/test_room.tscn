@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b4wpuqbsh07t4" path="res://scenes/levels/darkness_layer.tscn" id="1_op2op"]
 [ext_resource type="TileSet" uid="uid://dts5m0ui4v7ai" path="res://resources/main_tileset.tres" id="2_asmw1"]
 [ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="3_gyqsl"]
+[ext_resource type="PackedScene" uid="uid://cvop5pfgclkcx" path="res://scenes/utils/ui.tscn" id="6_asmw1"]
 [ext_resource type="Script" uid="uid://dpgbf5745cfw5" path="res://scripts/objects/tile_manager.gd" id="8_x4gfd"]
 [ext_resource type="PackedScene" uid="uid://bxv1ksdqyurbf" path="res://scenes/sound/audio_stream_player_bg_music.tscn" id="11_x4gfd"]
 
@@ -19,3 +20,5 @@ script = ExtResource("8_x4gfd")
 position = Vector2(40, 120)
 
 [node name="AudioStreamPlayer_BGMusic" parent="." unique_id=1090977874 instance=ExtResource("11_x4gfd")]
+
+[node name="UI" parent="." unique_id=1226678125 instance=ExtResource("6_asmw1")]
