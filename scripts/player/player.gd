@@ -18,6 +18,8 @@ class_name Player extends CharacterBody2D
 @export var state_fall: State
 @export var state_land: State
 
+static var player_instance: Player
+
 var frames_off_floor := 0
 var _flashlight_turned_off := false
 
@@ -35,6 +37,7 @@ func flip_sprite_by_velocity() -> void:
 		%Sprite2D.flip_h = velocity.x < 0
 
 func _ready() -> void:
+	player_instance = self
 	_flashlight_start_energy = %Flashlight.get_child(0).energy
 	_illumination_start_energy = %Illumination.energy
 	_flashlight_on()

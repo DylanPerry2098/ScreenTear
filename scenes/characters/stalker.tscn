@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://d0o1gvwqwdbmv"]
+
+[ext_resource type="Script" uid="uid://mm6i557l8rgx" path="res://scripts/stalker/enemy_stalker.gd" id="1_minep"]
+[ext_resource type="Texture2D" uid="uid://byg35umvpoj84" path="res://assets/stalker.png" id="2_dfw4t"]
+[ext_resource type="Script" uid="uid://13pmxpaht68i" path="res://scripts/state_machine/state_machine.gd" id="3_dfw4t"]
+[ext_resource type="Script" uid="uid://r5slmku41y2q" path="res://scripts/enemy_base_states/base_chase_state.gd" id="5_fa2j1"]
+[ext_resource type="Script" uid="uid://jp3qanwgp7ip" path="res://scripts/enemy_shared/enemy_pathfinding.gd" id="9_ffjl1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5oh04"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_518fa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_e3uwq"]
+resource_name = "spike_attack_normal"
+length = 1.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_splne"]
+_data = {
+&"RESET": SubResource("Animation_518fa"),
+&"spike_attack_normal": SubResource("Animation_e3uwq")
+}
+
+[node name="Stalker" type="CharacterBody2D" unique_id=763752193 node_paths=PackedStringArray("chase_state", "state_machine", "animation_player", "pathfinder", "sprite")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_minep")
+chase_state = NodePath("StateMachine/ChaseState")
+state_machine = NodePath("StateMachine")
+animation_player = NodePath("AnimationPlayer")
+pathfinder = NodePath("EnemyPathfinding")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=420065547]
+texture = ExtResource("2_dfw4t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=750644205]
+shape = SubResource("CircleShape2D_5oh04")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1458814993 node_paths=PackedStringArray("start_state")]
+script = ExtResource("3_dfw4t")
+start_state = NodePath("ChaseState")
+
+[node name="ChaseState" type="Node" parent="StateMachine" unique_id=1589601835 node_paths=PackedStringArray("pathfinder")]
+script = ExtResource("5_fa2j1")
+pathfinder = NodePath("../../EnemyPathfinding")
+visible_next_states = Dictionary[NodePath, String]({
+NodePath("../MeleeAttackState"): "within range"
+})
+
+[node name="HurtboxCoordinator" type="Node2D" parent="." unique_id=1084819008]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1704616248]
+libraries/ = SubResource("AnimationLibrary_splne")
+speed_scale = 1.25
+
+[node name="EnemyPathfinding" type="NavigationAgent2D" parent="." unique_id=1840688861 node_paths=PackedStringArray("enemy_body", "collision_shape")]
+script = ExtResource("9_ffjl1")
+enemy_body = NodePath("..")
+collision_shape = NodePath("../CollisionShape2D")
+metadata/_custom_type_script = "uid://jp3qanwgp7ip"
