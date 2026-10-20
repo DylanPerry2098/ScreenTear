@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bxv1ksdqyurbf"]
+
+[ext_resource type="AudioStream" uid="uid://dva26th1i2awv" path="res://Audio/Music/gamepay_theme.wav" id="1_sxm6b"]
+
+[node name="AudioStreamPlayer_BGMusic" type="AudioStreamPlayer" unique_id=1090977874]
+stream = ExtResource("1_sxm6b")
+autoplay = true

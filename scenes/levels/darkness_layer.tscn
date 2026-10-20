@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b4wpuqbsh07t4"]
+
+[ext_resource type="Script" uid="uid://bl5ughqrnmu2q" path="res://scripts/utils/darkness_layer.gd" id="1_gwpru"]
+
+[node name="DarknessLayer" type="ColorRect" unique_id=749041299]
+visible = false
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 784.0
+offset_bottom = 272.0
+color = Color(0.41, 0.41, 0.41, 1)
+script = ExtResource("1_gwpru")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1614044764]
+position = Vector2(16, 16)
+color = Color(0, 0, 0, 1)
