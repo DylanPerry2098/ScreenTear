@@ -16,7 +16,7 @@ func exit() -> void:
 	last_x_direction = 0
 	frames_without_horizontal_input = 0
 
-func physics_update(_delta: float) -> Transition:
+func physics_update(delta: float) -> Transition:
 	parent.flip_sprite_by_velocity()
 	parent.velocity.x = input_handler.get_horizontal_movement() * parent.speed
 
@@ -37,12 +37,6 @@ func physics_update(_delta: float) -> Transition:
 		play_turn_animation()
 
 	last_x_direction = parent.velocity.x if parent.velocity.x != 0 else last_x_direction
-
-	for i in parent.get_slide_collision_count():
-		var c := parent.get_slide_collision(i)
-		if c.get_collider() is RigidBody2D:
-			var crb := c.get_collider() as RigidBody2D
-			crb.apply_central_impulse(-c.get_normal() * 2)
 
 	return Transition.NONE
 
