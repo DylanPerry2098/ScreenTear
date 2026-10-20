@@ -3,14 +3,15 @@ extends Node2D
 @export var flashlight_length := 600.0
 @export var flashlight_angle_degrees := 45.0
 
-@onready var tilemap: TileManager = get_tree().get_first_node_in_group("light_tilemap")
+
+@onready var tilemap: TileManager = _get_tilemap_in_tree()
 
 var _raycasts: Array[RayCast2D]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if !tilemap:
-		print("No Attached TileMapLayer On " + self.name)
+		push_error("No Attached TileMapLayer On " + self.name)
 		
 	createCone(flashlight_angle_degrees)
 
@@ -30,3 +31,12 @@ func createCone(degreeCone:float):
 		_newCast.rotation_degrees = deg
 		add_child(_newCast)
 		_raycasts.append(_newCast)
+
+func _get_tilemap_in_tree():
+	for node in get_tree().root.get_children():
+		if node is TileManager:
+			return tilemap
+		for node2 in node.get_children():
+			if node2 is TileManager:
+				return node2
+	return

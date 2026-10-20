@@ -5,7 +5,7 @@ class_name OverheadLight extends ToggleableObject
 @export var light_length := 60.0
 @export var light_angle_degrees := 90.0
 
-@onready var tilemap: TileManager = get_tree().get_first_node_in_group("light_tilemap")
+@onready var tilemap: TileManager = _get_tilemap_in_tree()
 
 var _raycasts: Array[RayCast2D]
 	
@@ -50,3 +50,12 @@ func createCone(degreeCone:float):
 		_newCast.rotation_degrees = deg
 		add_child(_newCast)
 		_raycasts.append(_newCast)
+
+func _get_tilemap_in_tree():
+	for node in get_tree().root.get_children():
+		if node is TileManager:
+			return tilemap
+		for node2 in node.get_children():
+			if node2 is TileManager:
+				return node2
+	return
