@@ -83,7 +83,7 @@ func _physics_process(delta: float) -> void:
 		var c := get_slide_collision(i)
 		if c.get_collider() is RigidBody2D:
 			var crb := c.get_collider() as RigidBody2D
-			crb.apply_central_force(-c.get_normal() * delta * 7000)
+			crb.linear_velocity = -c.get_normal() * 80
 
 func _process(delta: float) -> void:
 	state_machine.update(delta)
