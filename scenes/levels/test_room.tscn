@@ -25,6 +25,7 @@ script = ExtResource("8_x4gfd")
 
 [node name="Sign" parent="." unique_id=766328927 instance=ExtResource("10_x4gfd")]
 position = Vector2(55, 234)
+text = "custom text"
 
 [node name="UI" parent="." unique_id=1226678125 instance=ExtResource("6_asmw1")]
 
@@ -39,7 +40,7 @@ connected_obj = NodePath("../OverheadLight")
 position = Vector2(153, 34)
 
 [node name="Player" parent="." unique_id=366328777 instance=ExtResource("3_gyqsl")]
-position = Vector2(102, 114)
+position = Vector2(55, 209)
 
 [node name="Stalker" parent="." unique_id=763752193 instance=ExtResource("11_ronwj")]
 position = Vector2(189, 100)

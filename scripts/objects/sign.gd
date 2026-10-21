@@ -1,6 +1,8 @@
 extends Area2D
 
-@export var label: Label
+@export var text:String = "Hello, World!"
+
+@onready var label:Label = %Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,6 +10,7 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 	
 	label.visible = false
+	label.text = text
 	await get_tree().physics_frame
 	label.reparent(UserInterface.instance)
 	

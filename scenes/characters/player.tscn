@@ -180,6 +180,7 @@ libraries/ = SubResource("AnimationLibrary_xhtjm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=662750080]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_xhtjm")
 
