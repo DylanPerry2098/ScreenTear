@@ -6,9 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cvop5pfgclkcx" path="res://scenes/utils/ui.tscn" id="6_asmw1"]
 [ext_resource type="PackedScene" uid="uid://dwylrlxy7xcpm" path="res://scenes/gizmos/box.tscn" id="8_ff50h"]
 [ext_resource type="Script" uid="uid://dpgbf5745cfw5" path="res://scripts/objects/tile_manager.gd" id="8_x4gfd"]
-[ext_resource type="PackedScene" uid="uid://cjowb85tb4dkv" path="res://scenes/gizmos/pressure_plate.tscn" id="9_x4gfd"]
-[ext_resource type="PackedScene" uid="uid://cufsw4pstk3lr" path="res://scenes/gizmos/door.tscn" id="10_op2op"]
-[ext_resource type="PackedScene" uid="uid://c5ilmhfephti" path="res://scenes/gizmos/overhead_light.tscn" id="10_ronwj"]
+[ext_resource type="PackedScene" uid="uid://cjowb85tb4dkv" path="res://scenes/gizmos/pressure_plate.tscn" id="9_s3biy"]
+[ext_resource type="PackedScene" uid="uid://c5ilmhfephti" path="res://scenes/gizmos/overhead_light.tscn" id="10_op2op"]
 [ext_resource type="PackedScene" uid="uid://bxv1ksdqyurbf" path="res://scenes/sound/audio_stream_player_bg_music.tscn" id="11_x4gfd"]
 
 [node name="TestRoom" type="Node2D" unique_id=2089002660]
@@ -21,27 +20,21 @@ tile_set = ExtResource("2_asmw1")
 script = ExtResource("8_x4gfd")
 
 [node name="Player" parent="." unique_id=366328777 instance=ExtResource("3_gyqsl")]
-position = Vector2(125, 177)
+position = Vector2(100, 118)
 
 [node name="AudioStreamPlayer_BGMusic" parent="." unique_id=1090977874 instance=ExtResource("11_x4gfd")]
 
 [node name="UI" parent="." unique_id=1226678125 instance=ExtResource("6_asmw1")]
 
 [node name="Box" parent="." unique_id=1527440110 instance=ExtResource("8_ff50h")]
-position = Vector2(104, 152)
+position = Vector2(103, 160)
 
-[node name="PressurePlate" parent="." unique_id=18738573 node_paths=PackedStringArray("connected_obj") instance=ExtResource("9_x4gfd")]
-position = Vector2(97, 193)
+[node name="PressurePlate" parent="." unique_id=18738573 node_paths=PackedStringArray("connected_obj") instance=ExtResource("9_s3biy")]
+position = Vector2(102, 192)
 connected_obj = NodePath("../OverheadLight")
 
-[node name="OverheadLight" parent="." unique_id=1548226924 instance=ExtResource("10_ronwj")]
-position = Vector2(176, 121)
+[node name="OverheadLight" parent="." unique_id=1548226924 instance=ExtResource("10_op2op")]
+position = Vector2(153, 34)
 
-[node name="PressurePlate2" parent="." unique_id=382068314 node_paths=PackedStringArray("connected_obj") instance=ExtResource("9_x4gfd")]
-position = Vector2(145, 176)
-connected_obj = NodePath("../Door")
-
-[node name="Door" parent="." unique_id=1063754324 instance=ExtResource("10_op2op")]
-position = Vector2(176, 136)
-rotation = -1.5707964
-collision_mask = 0
+[node name="Stalker" parent="." unique_id=763752193 instance=ExtResource("7_sa601")]
+position = Vector2(59, 28)

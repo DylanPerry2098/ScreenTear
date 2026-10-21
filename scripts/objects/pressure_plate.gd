@@ -11,7 +11,7 @@ const TEXTURE_PRESSED = preload("res://assets/plate_pressed.png")
 	
 func _ready() -> void:
 	_update_pressed(false)
-
+ 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
