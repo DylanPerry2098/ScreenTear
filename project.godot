@@ -85,6 +85,7 @@ turn_off_flashlight={
 2d_physics/layer_3="Light"
 2d_physics/layer_4="Light Block"
 2d_physics/layer_7="See Through Physical"
+2d_physics/layer_8="Occluder"
 
 [physics]
 

@@ -6,14 +6,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(14, 2.375)
 
-[node name="PressurePlate" type="StaticBody2D" unique_id=18738573]
+[node name="PressurePlate" type="StaticBody2D" unique_id=18738573 node_paths=PackedStringArray("area_2d")]
 script = ExtResource("1_jqx86")
+area_2d = NodePath("Area2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1121584185]
 texture = ExtResource("2_qmick")
 offset = Vector2(7, -3)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2003402786]
+unique_name_in_owner = true
+visible = false
 collision_layer = 16
 collision_mask = 34
 

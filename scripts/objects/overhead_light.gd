@@ -4,10 +4,11 @@ class_name OverheadLight extends ToggleableObject
 
 @export var light_length := 60.0
 @export var light_angle_degrees := 90.0
+const LINE_RAYCAST_AREA_SCENE := preload("res://scenes/gizmos/line_raycast_area.tscn")
 
 @onready var tilemap: TileManager = _get_tilemap_in_tree()
 
-var _raycasts: Array[RayCast2D]
+var _line_areas: Array[LineRaycastArea] = []
 	
 func _init() -> void:
 	super(
@@ -25,8 +26,8 @@ func _ready() -> void:
 	
 func _physics_process(_delta: float) -> void:
 	if tilemap:
-		var rays: Array[RayCast2D] = _raycasts if active else ([] as Array[RayCast2D])
-		tilemap.update_lightblocks(rays, self)
+		var areas: Array[LineRaycastArea] = _line_areas if active else ([] as Array[LineRaycastArea])
+		tilemap.update_lightblocks(areas, self)
 	
 func update_active(bl: bool) -> void:
 	super(bl)
@@ -36,25 +37,22 @@ func update_active(bl: bool) -> void:
 	else:
 		point_light.hide()
 
-## Create a cone of raycasts.
+## Create a cone of line raycast areas.
 func createCone(degreeCone:float):
-	var _newCast:RayCast2D
 	var halfDegreeCone = round(float(degreeCone)/2)
 	var offset = 90;
 	for deg in range(-halfDegreeCone,halfDegreeCone+1,10):
 		deg += offset
-		_newCast = RayCast2D.new()
-		_newCast.set_collision_mask_value(Layers.PhysicsLayer.LIGHT_BLOCK, true)
-		# _newCast.hit_from_inside = true
-		_newCast.target_position = Vector2(light_length,0)
-		_newCast.rotation_degrees = deg
-		add_child(_newCast)
-		_raycasts.append(_newCast)
+		var line_area := LINE_RAYCAST_AREA_SCENE.instantiate() as LineRaycastArea
+		line_area.set_length(light_length)
+		line_area.rotation_degrees = deg
+		add_child(line_area)
+		_line_areas.append(line_area)
 
 func _get_tilemap_in_tree():
 	for node in get_tree().root.get_children():
 		if node is TileManager:
-			return tilemap
+			return node
 		for node2 in node.get_children():
 			if node2 is TileManager:
 				return node2
