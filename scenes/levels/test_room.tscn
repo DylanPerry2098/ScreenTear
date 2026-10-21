@@ -4,7 +4,6 @@
 [ext_resource type="TileSet" uid="uid://dts5m0ui4v7ai" path="res://resources/main_tileset.tres" id="2_asmw1"]
 [ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="3_gyqsl"]
 [ext_resource type="PackedScene" uid="uid://cvop5pfgclkcx" path="res://scenes/utils/ui.tscn" id="6_asmw1"]
-[ext_resource type="PackedScene" uid="uid://d0o1gvwqwdbmv" path="res://scenes/characters/stalker.tscn" id="7_sa601"]
 [ext_resource type="PackedScene" uid="uid://dwylrlxy7xcpm" path="res://scenes/gizmos/box.tscn" id="8_ff50h"]
 [ext_resource type="Script" uid="uid://dpgbf5745cfw5" path="res://scripts/objects/tile_manager.gd" id="8_x4gfd"]
 [ext_resource type="PackedScene" uid="uid://cjowb85tb4dkv" path="res://scenes/gizmos/pressure_plate.tscn" id="9_s3biy"]
