@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dpgbf5745cfw5" path="res://scripts/objects/tile_manager.gd" id="8_x4gfd"]
 [ext_resource type="PackedScene" uid="uid://cjowb85tb4dkv" path="res://scenes/gizmos/pressure_plate.tscn" id="9_s3biy"]
 [ext_resource type="PackedScene" uid="uid://c5ilmhfephti" path="res://scenes/gizmos/overhead_light.tscn" id="10_op2op"]
+[ext_resource type="PackedScene" uid="uid://clc8hdjtr4js1" path="res://scenes/gizmos/sign.tscn" id="10_x4gfd"]
 [ext_resource type="PackedScene" uid="uid://bxv1ksdqyurbf" path="res://scenes/sound/audio_stream_player_bg_music.tscn" id="11_x4gfd"]
 
 [node name="TestRoom" type="Node2D" unique_id=2089002660]
@@ -19,10 +20,10 @@ tile_map_data = PackedByteArray("AAAAAAgAAQAAAAAAAAABAAgAAQAAAAAAAAACAAgAAQAAAAA
 tile_set = ExtResource("2_asmw1")
 script = ExtResource("8_x4gfd")
 
-[node name="Player" parent="." unique_id=366328777 instance=ExtResource("3_gyqsl")]
-position = Vector2(128, 184)
-
 [node name="AudioStreamPlayer_BGMusic" parent="." unique_id=1090977874 instance=ExtResource("11_x4gfd")]
+
+[node name="Sign" parent="." unique_id=766328927 instance=ExtResource("10_x4gfd")]
+position = Vector2(55, 234)
 
 [node name="UI" parent="." unique_id=1226678125 instance=ExtResource("6_asmw1")]
 
@@ -35,3 +36,6 @@ connected_obj = NodePath("../OverheadLight")
 
 [node name="OverheadLight" parent="." unique_id=1548226924 instance=ExtResource("10_op2op")]
 position = Vector2(153, 34)
+
+[node name="Player" parent="." unique_id=366328777 instance=ExtResource("3_gyqsl")]
+position = Vector2(128, 184)

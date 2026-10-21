@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://clc8hdjtr4js1"]
+
+[ext_resource type="Script" uid="uid://dsff3maju67cr" path="res://scripts/objects/sign.gd" id="1_drq56"]
+[ext_resource type="Texture2D" uid="uid://cimod6todc0ct" path="res://assets/physical_block.png" id="1_u7yem"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i31h3"]
+radius = 12.0415945
+
+[node name="Sign" type="Area2D" unique_id=766328927 node_paths=PackedStringArray("label")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_drq56")
+label = NodePath("Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=662066544]
+texture = ExtResource("1_u7yem")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2026349839]
+visible = false
+shape = SubResource("CircleShape2D_i31h3")
+
+[node name="Label" type="Label" parent="." unique_id=262790553]
+unique_name_in_owner = true
+offset_left = -52.0
+offset_top = -33.0
+offset_right = 52.0
+offset_bottom = -16.0
+theme_override_font_sizes/font_size = 12
+text = "This sign has text!"
