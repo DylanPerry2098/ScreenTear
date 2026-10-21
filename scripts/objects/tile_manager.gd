@@ -3,6 +3,7 @@ class_name TileManager extends TileMapLayer
 var _lit_up_tiles: Dictionary[Vector2i, LightSources]
 
 var _frozen_stalkers: Array[Stalker] = []
+var _stalker_frame_tracker: Dictionary[Stalker, int] = {}
 
 func _get_colliding_rays(rays: Array[RayCast2D]) -> Array[RayCast2D]:
 	var colliding_rays: Array[RayCast2D] = []
@@ -15,6 +16,7 @@ func update_lightblocks(rays: Array[RayCast2D], sender: Node2D):
 
 	var hit_tiles: Array[Vector2i]
 	var hit_stalkers: Array[Stalker]
+	var current_frame := Engine.get_physics_frames()
 
 	for ray in rays:
 		if not ray.is_colliding():
@@ -35,6 +37,7 @@ func update_lightblocks(rays: Array[RayCast2D], sender: Node2D):
 			hit_stalkers.append(stalker)
 			if stalker not in _frozen_stalkers:
 				_frozen_stalkers.append(stalker)
+			_stalker_frame_tracker[stalker] = current_frame
 		else:
 			continue
 
@@ -49,7 +52,7 @@ func update_lightblocks(rays: Array[RayCast2D], sender: Node2D):
 				_update_light_tile_sprite(tile_coords, false)
 	
 	for stalker in _frozen_stalkers:
-		if stalker not in hit_stalkers:
+		if stalker not in hit_stalkers and _stalker_frame_tracker.get(stalker, -1) < current_frame:
 			stalker.set_freeze(false)
 		else:
 			stalker.set_freeze(true)
