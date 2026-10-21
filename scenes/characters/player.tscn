@@ -223,12 +223,12 @@ one_shot = true
 [node name="LightCenter" type="Node2D" parent="." unique_id=810472179]
 
 [node name="Flashlight" parent="LightCenter" unique_id=1496237813 instance=ExtResource("10_7vyk4")]
+unique_name_in_owner = true
 
 [node name="Illumination" type="PointLight2D" parent="LightCenter" unique_id=612784230]
-position = Vector2(1.5, 0)
+unique_name_in_owner = true
 rotation = -3.1415925
-scale = Vector2(0.18611793, 0.2064088)
-energy = 1.85
+scale = Vector2(0.2, 0.2)
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.74509805)
 texture = ExtResource("11_2l4js")

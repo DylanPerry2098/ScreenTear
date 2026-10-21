@@ -27,7 +27,8 @@ func wants_to_jump() -> bool:
 func wants_to_dialogue() -> bool:
 	return Input.is_action_just_pressed("interact")
 
-
+func flashlight_pressed() -> bool:
+	return Input.is_action_just_pressed("turn_off_flashlight")
 
 ## Get the mouse's global position in world space
 func get_mouse_position() -> Vector2:
