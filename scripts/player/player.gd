@@ -28,6 +28,7 @@ var _flashlight_turned_off := false
 var _flashlight_start_energy := 0.0
 var _illumination_start_energy := 0.0
 
+
 func can_jump() -> bool:
 	return is_on_floor() or not coyote_timer.is_stopped()
 

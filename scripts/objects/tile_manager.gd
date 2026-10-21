@@ -5,6 +5,41 @@ var _lit_up_tiles: Dictionary[Vector2i, LightSources]
 var _frozen_stalkers: Array[Stalker] = []
 var _stalker_frame_tracker: Dictionary[Stalker, int] = {}
 
+func _player_occupies_tile(tile_coords: Vector2i) -> bool:
+	var player := Player.player_instance
+	if not player:
+		return false
+
+	var collision_shape := player.get_node("%CollisionShape2D") as CollisionShape2D
+	if not collision_shape or not collision_shape.shape:
+		return false
+
+	var shape_bounds := collision_shape.shape.get_rect()
+	var shape_corners := [
+		shape_bounds.position,
+		shape_bounds.position + Vector2(shape_bounds.size.x, 0),
+		shape_bounds.position + Vector2(0, shape_bounds.size.y),
+		shape_bounds.end
+	]
+	var player_bounds := Rect2(collision_shape.global_transform * shape_corners[0], Vector2.ZERO)
+	for index in range(1, shape_corners.size()):
+		player_bounds = player_bounds.expand(collision_shape.global_transform * shape_corners[index])
+
+	var tile_center := map_to_local(tile_coords)
+	var tile_size := Vector2(tile_set.tile_size)
+	var tile_bounds := Rect2(tile_center - tile_size / 2.0, tile_size)
+	var tile_corners := [
+		tile_bounds.position + Vector2(tile_bounds.size.x, 0),
+		tile_bounds.position + Vector2(0, tile_bounds.size.y),
+		tile_bounds.end
+	]
+	var tile_world_bounds := Rect2(global_transform * tile_bounds.position, Vector2.ZERO)
+	for corner in tile_corners:
+		var world_corner = global_transform * corner
+		tile_world_bounds = tile_world_bounds.expand(world_corner)
+
+	return player_bounds.intersects(tile_world_bounds, true)
+
 func _get_colliding_rays(rays: Array[RayCast2D]) -> Array[RayCast2D]:
 	var colliding_rays: Array[RayCast2D] = []
 	for ray in rays:
@@ -25,6 +60,8 @@ func update_lightblocks(rays: Array[RayCast2D], sender: Node2D):
 			var tilemap := self
 			var collision_point := ray.get_collision_point() - ray.get_collision_normal() * 0.5
 			var tile_coords := local_to_map(to_local(collision_point))
+			if _player_occupies_tile(tile_coords):
+				continue
 			var source_id := tilemap.get_cell_source_id(tile_coords)
 			if source_id in [0,2,3,4]:
 				hit_tiles.append(tile_coords)
