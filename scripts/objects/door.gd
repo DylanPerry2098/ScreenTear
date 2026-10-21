@@ -1,6 +1,7 @@
 class_name Door extends ToggleableObject
 
 @onready var collider = $CollisionShape2D
+@onready var occluder = $LightOccluder2D
 	
 func _init() -> void:
 	super(
@@ -16,3 +17,4 @@ func update_active(bl: bool) -> void:
 	super.update_active(bl)
 	
 	collider.set_deferred("disabled", bl)
+	occluder.visible = !bl

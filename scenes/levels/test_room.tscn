@@ -28,7 +28,7 @@ position = Vector2(125, 177)
 [node name="UI" parent="." unique_id=1226678125 instance=ExtResource("6_asmw1")]
 
 [node name="Box" parent="." unique_id=1527440110 instance=ExtResource("8_ff50h")]
-position = Vector2(104, 155)
+position = Vector2(104, 152)
 
 [node name="PressurePlate" parent="." unique_id=18738573 node_paths=PackedStringArray("connected_obj") instance=ExtResource("9_x4gfd")]
 position = Vector2(97, 193)
@@ -44,3 +44,4 @@ connected_obj = NodePath("../Door")
 [node name="Door" parent="." unique_id=1063754324 instance=ExtResource("10_op2op")]
 position = Vector2(176, 136)
 rotation = -1.5707964
+collision_mask = 0

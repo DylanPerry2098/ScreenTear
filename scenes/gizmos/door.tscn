@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(6.5, 32)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g4v7s"]
+polygon = PackedVector2Array(0.5, 16, -0.5, 16, -0.5, -16, 0.5, -16)
+
 [node name="Door" type="StaticBody2D" unique_id=1063754324]
 script = ExtResource("1_aa2eo")
 
@@ -14,3 +17,6 @@ texture = ExtResource("2_ycrjv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=709495972]
 shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=2135320742]
+occluder = SubResource("OccluderPolygon2D_g4v7s")
