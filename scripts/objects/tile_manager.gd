@@ -40,43 +40,65 @@ func _player_occupies_tile(tile_coords: Vector2i) -> bool:
 
 	return player_bounds.intersects(tile_world_bounds, true)
 
-func _get_colliding_rays(rays: Array[RayCast2D]) -> Array[RayCast2D]:
-	var colliding_rays: Array[RayCast2D] = []
-	for ray in rays:
-		if ray.is_colliding():
-			colliding_rays.append(ray)
-	return colliding_rays
+func _segment_intersects_rect(from: Vector2, to: Vector2, rect: Rect2) -> bool:
+	if rect.has_point(from) or rect.has_point(to):
+		return true
+	var top_left := rect.position
+	var top_right := Vector2(rect.end.x, rect.position.y)
+	var bottom_left := Vector2(rect.position.x, rect.end.y)
+	var bottom_right := rect.end
+	return (
+		Geometry2D.segment_intersects_segment(from, to, top_left, top_right) != null
+		or Geometry2D.segment_intersects_segment(from, to, top_right, bottom_right) != null
+		or Geometry2D.segment_intersects_segment(from, to, bottom_right, bottom_left) != null
+		or Geometry2D.segment_intersects_segment(from, to, bottom_left, top_left) != null
+	)
 
-func update_lightblocks(rays: Array[RayCast2D], sender: Node2D):
+func _get_tiles_in_segment(area: LineRaycastArea) -> Array[Vector2i]:
+	var endpoints := area.get_segment_global_endpoints()
+	var from := to_local(endpoints[0])
+	var to := to_local(endpoints[1])
+	var tile_size := Vector2(tile_set.tile_size)
+	var bounds := Rect2(from, Vector2.ZERO).expand(to).grow(tile_size.length())
+	var start_tile := local_to_map(bounds.position)
+	var end_tile := local_to_map(bounds.end)
+	var hit_tiles: Array[Vector2i] = []
 
-	var hit_tiles: Array[Vector2i]
-	var hit_stalkers: Array[Stalker]
+	for y in range(start_tile.y - 1, end_tile.y + 2):
+		for x in range(start_tile.x - 1, end_tile.x + 2):
+			var tile_coords := Vector2i(x, y)
+			var tile_center := map_to_local(tile_coords)
+			var tile_rect := Rect2(tile_center - tile_size / 2.0, tile_size)
+			if _segment_intersects_rect(from, to, tile_rect):
+				hit_tiles.append(tile_coords)
+	return hit_tiles
+
+func update_lightblocks(areas: Array[LineRaycastArea], sender: Node2D):
+
+	var hit_tiles: Array[Vector2i] = []
+	var hit_stalkers: Array[Stalker] = []
 	var current_frame := Engine.get_physics_frames()
 
-	for ray in rays:
-		if not ray.is_colliding():
-			continue
-		elif ray.get_collider() == self: 
-			var tilemap := self
-			var collision_point := ray.get_collision_point() - ray.get_collision_normal() * 0.5
-			var tile_coords := local_to_map(to_local(collision_point))
-			if _player_occupies_tile(tile_coords):
+	for area in areas:
+		for tile_coords in _get_tiles_in_segment(area):
+			if _player_occupies_tile(tile_coords) or get_cell_source_id(tile_coords) not in [0, 2, 3, 4]:
 				continue
-			var source_id := tilemap.get_cell_source_id(tile_coords)
-			if source_id in [0,2,3,4]:
-				hit_tiles.append(tile_coords)
-				if _tile_already_lit(tile_coords):
-					_lit_up_tiles[tile_coords].add_source(sender)
-				else:
-					_lit_up_tiles[tile_coords] = LightSources.new(sender)
-		elif ray.get_collider() is Stalker:
-			var stalker := ray.get_collider() as Stalker
+			hit_tiles.append(tile_coords)
+			if _tile_already_lit(tile_coords):
+				_lit_up_tiles[tile_coords].add_source(sender)
+			else:
+				_lit_up_tiles[tile_coords] = LightSources.new(sender)
+
+		for body in area.get_overlapping_bodies():
+			if not body is Stalker:
+				continue
+			var stalker := body as Stalker
+			if stalker in hit_stalkers:
+				continue
 			hit_stalkers.append(stalker)
 			if stalker not in _frozen_stalkers:
 				_frozen_stalkers.append(stalker)
 			_stalker_frame_tracker[stalker] = current_frame
-		else:
-			continue
 
 	for tile_coords in hit_tiles: # Tile may or may not need to be lit
 		_update_light_tile_sprite(tile_coords, true)
