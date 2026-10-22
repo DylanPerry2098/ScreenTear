@@ -6,6 +6,7 @@ extends Node2D
 const LINE_RAYCAST_AREA_SCENE := preload("res://scenes/gizmos/line_raycast_area.tscn")
 
 @onready var tilemap: TileManager = _get_tilemap_in_tree()
+@onready var point_light :PointLightSource = $PointLight2D
 
 var _line_areas: Array[LineRaycastArea] = []
 
@@ -29,6 +30,7 @@ func createCone(degreeCone:float):
 		line_area.rotation_degrees = deg
 		add_child(line_area)
 		_line_areas.append(line_area)
+		
 
 func _get_tilemap_in_tree():
 	for node in get_tree().root.get_children():
@@ -38,3 +40,9 @@ func _get_tilemap_in_tree():
 			if node2 is TileManager:
 				return node2
 	return
+
+func turn_off() -> void:
+	point_light.turn_off()
+
+func turn_on() -> void:
+	point_light.turn_on()
