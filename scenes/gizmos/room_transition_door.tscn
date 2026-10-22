@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://btbcbic8sh261"]
+
+[ext_resource type="Script" uid="uid://c32wfr7i1d2rl" path="res://scripts/objects/room_transition_door.gd" id="1_8vmrx"]
+[ext_resource type="Texture2D" uid="uid://drp0dedttahbe" path="res://assets/light_point.webp" id="2_gnr6j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i31h3"]
+size = Vector2(8, 20)
+
+[node name="RoomTransitionDoor" type="Node2D" unique_id=643625601]
+script = ExtResource("1_8vmrx")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1518123628]
+offset_left = -12.0
+offset_top = -32.0
+offset_right = 12.0
+color = Color(0, 0, 0, 1)
+
+[node name="Illumination" type="PointLight2D" parent="." unique_id=1787278246]
+unique_name_in_owner = true
+position = Vector2(0, -15.999999)
+rotation = -3.1415925
+scale = Vector2(0.2, 0.2)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.74509805)
+texture = ExtResource("2_gnr6j")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=627593609]
+unique_name_in_owner = true
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1636773689]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_i31h3")

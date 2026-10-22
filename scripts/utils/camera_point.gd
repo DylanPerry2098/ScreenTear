@@ -11,5 +11,4 @@ func ensure_camera() -> Camera2D:
 
 func focus_camera() -> void:
 	var cam: Camera2D = ensure_camera()
-	print(cam)
 	if cam: cam.global_position = global_position
