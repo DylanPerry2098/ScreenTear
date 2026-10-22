@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Screentear"
-run/main_scene="uid://0tkgly1g3kah"
+run/main_scene="uid://c7hr2mcf3b6d6"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
