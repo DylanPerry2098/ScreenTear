@@ -151,8 +151,9 @@ _data = {
 &"run_start": SubResource("Animation_g66nw")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xhtjm"]
-radius = 7.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jqx86"]
+radius = 4.0
+height = 14.0
 
 [node name="Player" type="CharacterBody2D" unique_id=366328777 node_paths=PackedStringArray("animation_player", "state_machine", "state_idle", "state_run", "state_jump", "state_fall", "state_land")]
 collision_layer = 3
@@ -183,7 +184,7 @@ libraries/ = SubResource("AnimationLibrary_xhtjm")
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_xhtjm")
+shape = SubResource("CapsuleShape2D_jqx86")
 
 [node name="PlayerInput" type="Node" parent="." unique_id=1787666402]
 script = ExtResource("3_ur7pv")
