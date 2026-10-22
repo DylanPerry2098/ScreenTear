@@ -25,9 +25,6 @@ var dying := false
 var frames_off_floor := 0
 var _flashlight_turned_off := false
 
-var _flashlight_start_energy := 0.0
-var _illumination_start_energy := 0.0
-
 func can_jump() -> bool:
 	return is_on_floor() or not coyote_timer.is_stopped()
 
@@ -40,13 +37,14 @@ func flip_sprite_by_velocity() -> void:
 
 func _ready() -> void:
 	player_instance = self
-	_flashlight_start_energy = %Flashlight.get_child(0).energy
-	_illumination_start_energy = %Illumination.energy
-	_flashlight_on()
+
 	if SceneManager.last_main_scene_resource_uid:
 		_find_spawn_position()
 
 	state_machine.init(self, animation_player)
+
+	await get_tree().process_frame
+	_flashlight_on()
 
 func _find_spawn_position() -> void:
 	for node in SceneManager.current_main_scene.get_children():
@@ -83,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		var c := get_slide_collision(i)
 		if c.get_collider() is RigidBody2D:
 			var crb := c.get_collider() as RigidBody2D
-			crb.apply_central_force(-c.get_normal() * delta * 7000)
+			crb.linear_velocity = -c.get_normal() * 80
 
 func _process(delta: float) -> void:
 	state_machine.update(delta)
@@ -91,29 +89,12 @@ func _process(delta: float) -> void:
 
 func _flashlight_on():
 	_flashlight_turned_off = false
-	var flashlight_tween = create_tween()
-	var light_emit_tween = create_tween()
-	var flashlight_width_tween = create_tween()
-
-	%Flashlight.get_child(0).energy = 0.0
-	%Illumination.energy = 0.0
-	%Flashlight.scale = Vector2(1,0)
-
-
-	flashlight_tween.tween_property(%Flashlight.get_child(0), "energy", _flashlight_start_energy, 0.25)
-	light_emit_tween.tween_property(%Illumination, "energy", _illumination_start_energy, 0.25)
-	flashlight_width_tween.tween_property(%Flashlight, "scale", Vector2(1,1), 0.25)
+	LightManager.turn_on_all()
 	
 func flashlight_off():
 	_flashlight_turned_off = true
-	var flashlight_tween = create_tween()
-	var light_emit_tween = create_tween()
-	var flashlight_width_tween = create_tween()
-	flashlight_tween.tween_property(%Flashlight.get_child(0), "energy", 0.0, 0.25)
-	light_emit_tween.tween_property(%Illumination, "energy", 0.0, 0.25)
-	flashlight_width_tween.tween_property(%Flashlight, "scale", Vector2(1,0), 0.25)
+	LightManager.turn_off_all()
 	
-	await flashlight_tween.finished
 	await get_tree().create_timer(0.5).timeout
 	SceneManager.change_scenes(SceneManager.MainScene.SAME)
 
@@ -121,18 +102,14 @@ func flashlight_off():
 func death():
 	dying = true
 	_flashlight_turned_off = true
-	var flashlight_tween = create_tween()
+	LightManager.turn_off_all(%Illumination)
 	
-	var flashlight_width_tween = create_tween()
 	var red_light_tween = create_tween()
-	flashlight_tween.tween_property(%Flashlight.get_child(0), "energy", 0.0, 0.25)
-	flashlight_width_tween.tween_property(%Flashlight, "scale", Vector2(1,0), 0.25)
 	red_light_tween.tween_property(%Illumination, "color", Color(1,0,0,1), 0.25)
 	
-	await flashlight_tween.finished
+	await red_light_tween.finished
 	
-	var light_emit_tween = create_tween()
-	light_emit_tween.tween_property(%Illumination, "energy", 0.0, 0.25)
-	await light_emit_tween.finished
-	await get_tree().create_timer(0.5).timeout
+	
+	%Illumination.turn_off()
+	await get_tree().create_timer(0.75).timeout 
 	SceneManager.change_scenes(SceneManager.MainScene.SAME)

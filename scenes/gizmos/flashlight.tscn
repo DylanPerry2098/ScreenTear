@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://y6oyhksf6wmd" path="res://assets/torch_light.png" id="1_n646v"]
 [ext_resource type="Script" uid="uid://xsk77kbl6gsi" path="res://scripts/player/flashlight.gd" id="1_nudle"]
+[ext_resource type="Script" uid="uid://b6xjram4ulxgf" path="res://scripts/objects/point_light_source.gd" id="3_hshpt"]
 [ext_resource type="Texture2D" uid="uid://d47ghjfh8wt3" path="res://assets/flashlight.png" id="3_nudle"]
 
 [node name="Flashlight" type="Node2D" unique_id=1496237813]
@@ -9,12 +10,14 @@ script = ExtResource("1_nudle")
 flashlight_length = 150.0
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=21381727]
+unique_name_in_owner = true
 scale = Vector2(0.25, 0.25)
 energy = 4.5
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("1_n646v")
 offset = Vector2(300, -5)
+script = ExtResource("3_hshpt")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=725536074]
 texture = ExtResource("3_nudle")

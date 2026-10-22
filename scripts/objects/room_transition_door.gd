@@ -1,14 +1,9 @@
-@tool
 class_name RoomTransitionDoor extends Node2D
 
 @export_file("*.tscn") var target_scene:String
 var _target_scene_instance: Node
 
-@export var in_foreground := false:
-	set(x):
-		in_foreground = x
-		$ColorRect.color.a = 0.5 if in_foreground else 1.0
-		z_index = 10 if in_foreground else 0
+@onready var _area: Area2D = $Area2D
 	
 func _ready() -> void:
 
@@ -20,17 +15,14 @@ func _ready() -> void:
 		return
 	var a :PackedScene = load(target_scene)
 	_target_scene_instance = a.instantiate()
-
-	%Interactible.interacted.connect(_on_interact)
+	_area.body_entered.connect(_on_area_body_entered)
 
 func get_exit_global_pos(player_height: float):
 	return global_position + Vector2(0, (144 - player_height))
 
-func _on_interact():
-	if Engine.is_editor_hint():
+func _on_area_body_entered(body: Node) -> void:
+	if Engine.is_editor_hint() or body is not Player:
 		return
 	SceneManager.change_scenes_to_path(
 		_target_scene_instance,
-		SceneManager.UIScene.NONE,
-		SceneManager.ScreenTransitionScene.FADE,
 	)

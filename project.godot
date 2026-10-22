@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://j1r1hx7qyhbr"
 
 SceneManager="*uid://cytegabay7iaw"
 TileMapManager="*uid://cx2nbot61t7wu"
+LightManager="*uid://bwidfye3ln7d7"
 
 [display]
 
@@ -85,6 +86,7 @@ turn_off_flashlight={
 2d_physics/layer_3="Light"
 2d_physics/layer_4="Light Block"
 2d_physics/layer_7="See Through Physical"
+2d_physics/layer_8="Occluder"
 
 [physics]
 

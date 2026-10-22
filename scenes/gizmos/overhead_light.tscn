@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c6tk7a1lh50pi" path="res://scripts/objects/overhead_light.gd" id="1_qo8hx"]
 [ext_resource type="Texture2D" uid="uid://876jnbpyig5d" path="res://assets/overhead_light_off.png" id="2_3xinr"]
 [ext_resource type="Texture2D" uid="uid://y6oyhksf6wmd" path="res://assets/torch_light.png" id="4_sh82x"]
+[ext_resource type="Script" uid="uid://b6xjram4ulxgf" path="res://scripts/objects/point_light_source.gd" id="5_point"]
 
 [node name="OverheadLight" type="Node2D" unique_id=1548226924]
 script = ExtResource("1_qo8hx")
@@ -19,3 +20,4 @@ shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("4_sh82x")
 offset = Vector2(300, -5)
+script = ExtResource("5_point")

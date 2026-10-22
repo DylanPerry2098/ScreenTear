@@ -100,14 +100,14 @@ func _new_screen_transition_instance(new_screen_transition_name: ScreenTransitio
 func _change_main_scene(new_main_scene: Node, delete: bool):
 	last_main_scene_resource_uid = ResourceLoader.get_resource_uid(current_main_scene.scene_file_path)
 	if current_main_scene != null:
-		get_tree().root.remove_child(current_main_scene)
+		get_tree().root.remove_child.call_deferred(current_main_scene)
 		if delete:
 			current_main_scene.queue_free()
 		else:
 			main_scene_stack.append(current_main_scene)
 	current_main_scene = new_main_scene
 	if current_main_scene != null:
-		get_tree().root.add_child(current_main_scene)
+		get_tree().root.add_child.call_deferred(current_main_scene)
 
 ## Deletes the current UI if it exists, and replaces it with new UI.
 func _change_ui(new_ui: UserInterface, delete: bool):
@@ -119,7 +119,7 @@ func _change_ui(new_ui: UserInterface, delete: bool):
 			ui_stack.append(current_ui)
 	current_ui = new_ui
 	if current_ui != null:
-		get_tree().root.add_child(current_ui)
+		get_tree().root.add_child.call_deferred(current_ui)
 
 # func reload_current_scene(screen_transition_name: ScreenTransitionScene = ScreenTransitionScene.NONE):
 # 	change_scenes(
