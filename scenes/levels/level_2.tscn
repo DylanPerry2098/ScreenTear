@@ -31,7 +31,7 @@ limit_bottom = 256
 [node name="CameraTransitions" type="Node2D" parent="." unique_id=1521527373]
 
 [node name="CamTransitionArea" parent="CameraTransitions" unique_id=2052498669 instance=ExtResource("3_qpwj6")]
-position = Vector2(256, 40)
+position = Vector2(248, 40)
 
 [node name="Boxes" type="Node2D" parent="." unique_id=432974776]
 

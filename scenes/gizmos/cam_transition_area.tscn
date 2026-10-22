@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bl7ln7l3qi0g4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahet1"]
-size = Vector2(16, 48)
+size = Vector2(6, 48)
 
 [node name="CamTransitionArea" type="Area2D" unique_id=2052498669]
 collision_layer = 0
