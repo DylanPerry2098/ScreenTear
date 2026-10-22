@@ -16,7 +16,7 @@ func exit() -> void:
 	last_x_direction = 0
 	frames_without_horizontal_input = 0
 
-func physics_update(_delta: float) -> Transition:
+func physics_update(delta: float) -> Transition:
 	parent.flip_sprite_by_velocity()
 	parent.velocity.x = input_handler.get_horizontal_movement() * parent.speed
 
@@ -37,6 +37,7 @@ func physics_update(_delta: float) -> Transition:
 		play_turn_animation()
 
 	last_x_direction = parent.velocity.x if parent.velocity.x != 0 else last_x_direction
+
 	return Transition.NONE
 
 func play_turn_animation() -> void:
