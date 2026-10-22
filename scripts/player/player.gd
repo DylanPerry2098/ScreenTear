@@ -18,6 +18,9 @@ class_name Player extends CharacterBody2D
 @export var state_fall: State
 @export var state_land: State
 
+@export var flashlighton_sfx: AudioStreamPlayer
+@export var flashlightoff_sfx: AudioStreamPlayer
+
 static var player_instance: Player
 
 var dying := false
@@ -94,6 +97,7 @@ func _flashlight_on():
 	var flashlight_tween = create_tween()
 	var light_emit_tween = create_tween()
 	var flashlight_width_tween = create_tween()
+	flashlighton_sfx.play()
 
 	%Flashlight.get_child(0).energy = 0.0
 	%Illumination.energy = 0.0
@@ -106,6 +110,7 @@ func _flashlight_on():
 	
 func flashlight_off():
 	_flashlight_turned_off = true
+	flashlightoff_sfx.play()
 	var flashlight_tween = create_tween()
 	var light_emit_tween = create_tween()
 	var flashlight_width_tween = create_tween()

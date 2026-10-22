@@ -6,6 +6,8 @@ var plate_pressed := false
 
 @export var connected_obj: ToggleableObject
 
+@export var buttonpush_sfx: AudioStreamPlayer
+
 const TEXTURE_UNPRESSED = preload("res://assets/plate_unpressed.png")
 const TEXTURE_PRESSED = preload("res://assets/plate_pressed.png")
 	
@@ -13,16 +15,20 @@ func _ready() -> void:
 	_update_pressed(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	pass
 
 func _update_pressed(pressed: bool) -> void:
 	plate_pressed = pressed
 	sprite_2d.texture = TEXTURE_PRESSED if plate_pressed else TEXTURE_UNPRESSED
+	buttonpush_sfx.play()
 
+@warning_ignore("unused_parameter")
 func _on_body_entered(body: Node2D) -> void:
 	_update_state(true)
 
+@warning_ignore("unused_parameter")
 func _on_body_exited(body: Node2D) -> void:
 	_update_state(false)
 	
