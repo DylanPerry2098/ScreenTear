@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://be2f24h77roh3" path="res://scenes/gizmos/flashlight.tscn" id="10_7vyk4"]
 [ext_resource type="Texture2D" uid="uid://drp0dedttahbe" path="res://assets/light_point.webp" id="11_2l4js"]
 [ext_resource type="AudioStream" uid="uid://dfnv55tnebrdd" path="res://Audio/SFX/jump_sfx.mp3" id="12_jk2m4"]
+[ext_resource type="Script" uid="uid://b6xjram4ulxgf" path="res://scripts/objects/point_light_source.gd" id="13_point"]
 
 [sub_resource type="Animation" id="Animation_2l4js"]
 length = 0.001
@@ -232,6 +233,7 @@ scale = Vector2(0.2, 0.2)
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.74509805)
 texture = ExtResource("11_2l4js")
+script = ExtResource("13_point")
 
 [node name="jumpsfx" type="AudioStreamPlayer" parent="." unique_id=475409433]
 stream = ExtResource("12_jk2m4")

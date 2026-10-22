@@ -6,7 +6,8 @@ func ensure_camera() -> Camera2D:
 	var cam: Camera2D = get_viewport().get_camera_2d()
 	if not cam:
 		cam = Camera2D.new()
-		get_viewport().add_child(cam)
+		if SceneManager.current_main_scene:
+			SceneManager.current_main_scene.add_child(cam)
 	return cam
 
 func focus_camera() -> void:

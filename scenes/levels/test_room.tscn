@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://clc8hdjtr4js1" path="res://scenes/gizmos/sign.tscn" id="10_x4gfd"]
 [ext_resource type="PackedScene" uid="uid://btbcbic8sh261" path="res://scenes/gizmos/room_transition_door.tscn" id="11_ronwj"]
 [ext_resource type="PackedScene" uid="uid://bxv1ksdqyurbf" path="res://scenes/sound/audio_stream_player_bg_music.tscn" id="11_x4gfd"]
+[ext_resource type="PackedScene" uid="uid://d0o1gvwqwdbmv" path="res://scenes/characters/stalker.tscn" id="12_ronwj"]
 
 [node name="TestRoom" type="Node2D" unique_id=2089002660]
 
@@ -44,4 +45,7 @@ connected_obj = NodePath("../OverheadLight")
 position = Vector2(153, 34)
 
 [node name="Player" parent="." unique_id=366328777 instance=ExtResource("3_gyqsl")]
-position = Vector2(40, 116)
+position = Vector2(40, 120)
+
+[node name="Stalker" parent="." unique_id=763752193 instance=ExtResource("12_ronwj")]
+position = Vector2(104, 44)

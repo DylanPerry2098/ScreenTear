@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c32wfr7i1d2rl" path="res://scripts/objects/room_transition_door.gd" id="1_8vmrx"]
 [ext_resource type="Texture2D" uid="uid://drp0dedttahbe" path="res://assets/light_point.webp" id="2_gnr6j"]
+[ext_resource type="Script" uid="uid://b6xjram4ulxgf" path="res://scripts/objects/point_light_source.gd" id="3_point"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i31h3"]
 size = Vector2(8, 20)
@@ -23,6 +24,7 @@ scale = Vector2(0.2, 0.2)
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.74509805)
 texture = ExtResource("2_gnr6j")
+script = ExtResource("3_point")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=627593609]
 unique_name_in_owner = true

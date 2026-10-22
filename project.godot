@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://j1r1hx7qyhbr"
 
 SceneManager="*uid://cytegabay7iaw"
 TileMapManager="*uid://cx2nbot61t7wu"
+LightManager="*uid://bwidfye3ln7d7"
 
 [display]
 
