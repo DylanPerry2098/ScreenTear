@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cjowb85tb4dkv" path="res://scenes/gizmos/pressure_plate.tscn" id="4_ibugp"]
 [ext_resource type="PackedScene" uid="uid://dwylrlxy7xcpm" path="res://scenes/gizmos/box.tscn" id="7_3p04p"]
 [ext_resource type="PackedScene" uid="uid://cufsw4pstk3lr" path="res://scenes/gizmos/door.tscn" id="8_qsp8v"]
+[ext_resource type="PackedScene" uid="uid://btbcbic8sh261" path="res://scenes/gizmos/room_transition_door.tscn" id="10_qsp8v"]
 
 [node name="Level2" type="Node2D" unique_id=1593620024]
 script = ExtResource("1_l37oo")
@@ -66,5 +67,9 @@ connected_obj = NodePath("../../Gates/Door")
 
 [node name="GoalPlaceholder" type="Node2D" parent="." unique_id=1117480912]
 position = Vector2(368, 57)
+
+[node name="RoomTransitionDoor" parent="." unique_id=643625601 instance=ExtResource("10_qsp8v")]
+position = Vector2(369, 80)
+target_scene = "uid://p0qd0f4wx1hs"
 
 [connection signal="body_exited" from="CameraTransitions/CamTransitionArea" to="." method="_on_cam_transition1_area_body_exited"]

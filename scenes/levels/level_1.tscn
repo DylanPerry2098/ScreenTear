@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cufsw4pstk3lr" path="res://scenes/gizmos/door.tscn" id="8_iav0o"]
 [ext_resource type="PackedScene" uid="uid://c5ilmhfephti" path="res://scenes/gizmos/overhead_light.tscn" id="9_dga24"]
 [ext_resource type="Script" uid="uid://cijw3waqmb8dc" path="res://scripts/utils/camera_point.gd" id="9_qxy0u"]
+[ext_resource type="PackedScene" uid="uid://btbcbic8sh261" path="res://scenes/gizmos/room_transition_door.tscn" id="10_dnkej"]
 [ext_resource type="PackedScene" uid="uid://ckfw3i5j7f385" path="res://scenes/utils/pause_menu.tscn" id="10_qxy0u"]
 
 [node name="Level1" type="Node2D" unique_id=330516812]
@@ -75,6 +76,10 @@ z_index = -1
 position = Vector2(423, 60)
 rotation = 3.1415927
 connected_obj = NodePath("../../OverheadLights/OverheadLight2")
+
+[node name="RoomTransitionDoor" parent="PressurePlates" unique_id=643625601 instance=ExtResource("10_dnkej")]
+position = Vector2(721, 96)
+target_scene = "uid://b1a0fw74c1umf"
 
 [node name="OverheadLights" type="Node2D" parent="." unique_id=759948276]
 
