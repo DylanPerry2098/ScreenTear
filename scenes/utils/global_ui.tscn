@@ -8,4 +8,4 @@ layer = 5
 script = ExtResource("1_la3kr")
 
 [node name="FlashlightCursor" parent="." unique_id=1238564414 instance=ExtResource("2_uvgli")]
-visible = false
+unique_name_in_owner = true

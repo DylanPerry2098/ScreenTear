@@ -2,9 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://ukta0s7jngmd" path="res://assets/flashlight_cursor.png" id="1_7l2r0"]
 [ext_resource type="Script" uid="uid://diuywx1a7ityq" path="res://scenes/gizmos/flashlight_cursor.gd" id="2_ps4ku"]
+[ext_resource type="Texture2D" uid="uid://drp0dedttahbe" path="res://assets/light_point.webp" id="3_de1xw"]
 
-[node name="FlashlightCursor" type="Sprite2D" unique_id=1238564414]
+[node name="FlashlightCursor" type="Node2D" unique_id=1836261793]
+script = ExtResource("2_ps4ku")
+
+[node name="Cursor" type="Sprite2D" parent="." unique_id=1238564414]
+unique_name_in_owner = true
 z_index = 5
 z_as_relative = false
 texture = ExtResource("1_7l2r0")
-script = ExtResource("2_ps4ku")
+
+[node name="Spotlight" type="PointLight2D" parent="." unique_id=538175124]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_de1xw")
