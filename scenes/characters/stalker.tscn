@@ -64,6 +64,7 @@ sprite = NodePath("Sprite2D")
 texture = ExtResource("2_dfw4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=750644205]
+visible = false
 shape = SubResource("CircleShape2D_5oh04")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1458814993 node_paths=PackedStringArray("start_state")]
@@ -95,5 +96,6 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=129034135]
+visible = false
 shape = SubResource("CircleShape2D_i31h3")
 debug_color = Color(0.9728443, 0.1669772, 7.70092e-07, 0.41960785)

@@ -1,11 +1,21 @@
 [gd_scene format=3 uid="uid://bl7ln7l3qi0g4"]
 
+[ext_resource type="Script" uid="uid://cxw4tqvnswif2" path="res://scripts/objects/cam_transition_area.gd" id="1_ge2je"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahet1"]
 size = Vector2(16, 48)
 
 [node name="CamTransitionArea" type="Area2D" unique_id=2052498669]
 collision_layer = 0
 collision_mask = 2
+script = ExtResource("1_ge2je")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1801947296]
 shape = SubResource("RectangleShape2D_ahet1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=200492997]
+offset_left = -8.0
+offset_top = -24.0
+offset_right = 8.0
+offset_bottom = 24.0
+color = Color(1, 1, 1, 0.27058825)

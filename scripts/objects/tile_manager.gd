@@ -3,40 +3,102 @@ class_name TileManager extends TileMapLayer
 var _lit_up_tiles: Dictionary[Vector2i, LightSources]
 
 var _frozen_stalkers: Array[Stalker] = []
+var _stalker_frame_tracker: Dictionary[Stalker, int] = {}
 
-func _get_colliding_rays(rays: Array[RayCast2D]) -> Array[RayCast2D]:
-	var colliding_rays: Array[RayCast2D] = []
-	for ray in rays:
-		if ray.is_colliding():
-			colliding_rays.append(ray)
-	return colliding_rays
+func _player_occupies_tile(tile_coords: Vector2i) -> bool:
+	var player := Player.player_instance
+	if not player:
+		return false
 
-func update_lightblocks(rays: Array[RayCast2D], sender: Node2D):
+	var collision_shape := player.get_node("%CollisionShape2D") as CollisionShape2D
+	if not collision_shape or not collision_shape.shape:
+		return false
 
-	var hit_tiles: Array[Vector2i]
-	var hit_stalkers: Array[Stalker]
+	var shape_bounds := collision_shape.shape.get_rect()
+	var shape_corners := [
+		shape_bounds.position,
+		shape_bounds.position + Vector2(shape_bounds.size.x, 0),
+		shape_bounds.position + Vector2(0, shape_bounds.size.y),
+		shape_bounds.end
+	]
+	var player_bounds := Rect2(collision_shape.global_transform * shape_corners[0], Vector2.ZERO)
+	for index in range(1, shape_corners.size()):
+		player_bounds = player_bounds.expand(collision_shape.global_transform * shape_corners[index])
 
-	for ray in rays:
-		if not ray.is_colliding():
-			continue
-		elif ray.get_collider() == self: 
-			var tilemap := self
-			var collision_point := ray.get_collision_point() - ray.get_collision_normal() * 0.5
-			var tile_coords := local_to_map(to_local(collision_point))
-			var source_id := tilemap.get_cell_source_id(tile_coords)
-			if source_id in [0,2,3,4]:
+	var tile_center := map_to_local(tile_coords)
+	var tile_size := Vector2(tile_set.tile_size)
+	var tile_bounds := Rect2(tile_center - tile_size / 2.0, tile_size)
+	var tile_corners := [
+		tile_bounds.position + Vector2(tile_bounds.size.x, 0),
+		tile_bounds.position + Vector2(0, tile_bounds.size.y),
+		tile_bounds.end
+	]
+	var tile_world_bounds := Rect2(global_transform * tile_bounds.position, Vector2.ZERO)
+	for corner in tile_corners:
+		var world_corner = global_transform * corner
+		tile_world_bounds = tile_world_bounds.expand(world_corner)
+
+	return player_bounds.intersects(tile_world_bounds, true)
+
+func _segment_intersects_rect(from: Vector2, to: Vector2, rect: Rect2) -> bool:
+	if rect.has_point(from) or rect.has_point(to):
+		return true
+	var top_left := rect.position
+	var top_right := Vector2(rect.end.x, rect.position.y)
+	var bottom_left := Vector2(rect.position.x, rect.end.y)
+	var bottom_right := rect.end
+	return (
+		Geometry2D.segment_intersects_segment(from, to, top_left, top_right) != null
+		or Geometry2D.segment_intersects_segment(from, to, top_right, bottom_right) != null
+		or Geometry2D.segment_intersects_segment(from, to, bottom_right, bottom_left) != null
+		or Geometry2D.segment_intersects_segment(from, to, bottom_left, top_left) != null
+	)
+
+func _get_tiles_in_segment(area: LineRaycastArea) -> Array[Vector2i]:
+	var endpoints := area.get_segment_global_endpoints()
+	var from := to_local(endpoints[0])
+	var to := to_local(endpoints[1])
+	var tile_size := Vector2(tile_set.tile_size)
+	var bounds := Rect2(from, Vector2.ZERO).expand(to).grow(tile_size.length())
+	var start_tile := local_to_map(bounds.position)
+	var end_tile := local_to_map(bounds.end)
+	var hit_tiles: Array[Vector2i] = []
+
+	for y in range(start_tile.y - 1, end_tile.y + 2):
+		for x in range(start_tile.x - 1, end_tile.x + 2):
+			var tile_coords := Vector2i(x, y)
+			var tile_center := map_to_local(tile_coords)
+			var tile_rect := Rect2(tile_center - tile_size / 2.0, tile_size)
+			if _segment_intersects_rect(from, to, tile_rect):
 				hit_tiles.append(tile_coords)
-				if _tile_already_lit(tile_coords):
-					_lit_up_tiles[tile_coords].add_source(sender)
-				else:
-					_lit_up_tiles[tile_coords] = LightSources.new(sender)
-		elif ray.get_collider() is Stalker:
-			var stalker := ray.get_collider() as Stalker
+	return hit_tiles
+
+func update_lightblocks(areas: Array[LineRaycastArea], sender: Node2D):
+
+	var hit_tiles: Array[Vector2i] = []
+	var hit_stalkers: Array[Stalker] = []
+	var current_frame := Engine.get_physics_frames()
+
+	for area in areas:
+		for tile_coords in _get_tiles_in_segment(area):
+			if _player_occupies_tile(tile_coords) or get_cell_source_id(tile_coords) not in [0, 2, 3, 4]:
+				continue
+			hit_tiles.append(tile_coords)
+			if _tile_already_lit(tile_coords):
+				_lit_up_tiles[tile_coords].add_source(sender)
+			else:
+				_lit_up_tiles[tile_coords] = LightSources.new(sender)
+
+		for body in area.get_overlapping_bodies():
+			if not body is Stalker:
+				continue
+			var stalker := body as Stalker
+			if stalker in hit_stalkers:
+				continue
 			hit_stalkers.append(stalker)
 			if stalker not in _frozen_stalkers:
 				_frozen_stalkers.append(stalker)
-		else:
-			continue
+			_stalker_frame_tracker[stalker] = current_frame
 
 	for tile_coords in hit_tiles: # Tile may or may not need to be lit
 		_update_light_tile_sprite(tile_coords, true)
@@ -49,7 +111,7 @@ func update_lightblocks(rays: Array[RayCast2D], sender: Node2D):
 				_update_light_tile_sprite(tile_coords, false)
 	
 	for stalker in _frozen_stalkers:
-		if stalker not in hit_stalkers:
+		if stalker not in hit_stalkers and _stalker_frame_tracker.get(stalker, -1) < current_frame:
 			stalker.set_freeze(false)
 		else:
 			stalker.set_freeze(true)

@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dfnv55tnebrdd" path="res://Audio/SFX/jump_sfx.mp3" id="12_jk2m4"]
 [ext_resource type="AudioStream" uid="uid://b2d01g5667iyx" path="res://Audio/SFX/flashlighton_sfx.mp3" id="13_xhtjm"]
 [ext_resource type="AudioStream" uid="uid://brofchjtd4mrk" path="res://Audio/SFX/flashlightoff_sfx.mp3" id="14_k4v7y"]
+[ext_resource type="Script" uid="uid://b6xjram4ulxgf" path="res://scripts/objects/point_light_source.gd" id="13_point"]
 
 [sub_resource type="Animation" id="Animation_2l4js"]
 length = 0.001
@@ -152,8 +153,9 @@ _data = {
 &"run_start": SubResource("Animation_g66nw")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xhtjm"]
-radius = 7.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jqx86"]
+radius = 4.0
+height = 14.0
 
 [node name="Player" type="CharacterBody2D" unique_id=366328777 node_paths=PackedStringArray("animation_player", "state_machine", "state_idle", "state_run", "state_jump", "state_fall", "state_land", "flashlighton_sfx", "flashlightoff_sfx")]
 collision_layer = 3
@@ -186,7 +188,7 @@ libraries/ = SubResource("AnimationLibrary_xhtjm")
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_xhtjm")
+shape = SubResource("CapsuleShape2D_jqx86")
 
 [node name="PlayerInput" type="Node" parent="." unique_id=1787666402]
 script = ExtResource("3_ur7pv")
@@ -236,6 +238,7 @@ scale = Vector2(0.2, 0.2)
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.74509805)
 texture = ExtResource("11_2l4js")
+script = ExtResource("13_point")
 
 [node name="jumpsfx" type="AudioStreamPlayer" parent="." unique_id=475409433]
 stream = ExtResource("12_jk2m4")

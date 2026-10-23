@@ -1,15 +1,11 @@
 extends Node
 
-## See `is_rect_containing_ground()` for the public query used by gameplay code.
 var _ground: TileMapLayer
 
 const EMPTY_ATLAS_COORD := Vector2i(-1, -1)
 
 var navigation_region_sizes :Dictionary[int,float] = {
-	1: 15.0, # small
-	2: 15.0, # medium
-	3: 15.0, # large
-	4: 15.0, # extra large
+	1: 15.0, # Just one for now to avoid baking warnings and we dont really need more
 }
 
 ## Registers tile map layers with the manager.

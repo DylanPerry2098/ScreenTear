@@ -4,6 +4,7 @@ var plate_pressed := false
 
 @onready var sprite_2d = $Sprite2D
 
+@export var area_2d: Area2D
 @export var connected_obj: ToggleableObject
 
 @export var buttonpush_sfx: AudioStreamPlayer
@@ -12,8 +13,9 @@ const TEXTURE_UNPRESSED = preload("res://assets/plate_unpressed.png")
 const TEXTURE_PRESSED = preload("res://assets/plate_pressed.png")
 	
 func _ready() -> void:
-	_update_pressed(false)
-
+	plate_pressed = false
+	sprite_2d.texture = TEXTURE_UNPRESSED
+ 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
@@ -30,7 +32,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 @warning_ignore("unused_parameter")
 func _on_body_exited(body: Node2D) -> void:
-	_update_state(false)
+	if area_2d.get_overlapping_bodies().size() == 0:
+		_update_state(false)
 	
 func _update_state(bl: bool) -> void:
 	_update_pressed(bl)

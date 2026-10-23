@@ -1,18 +1,19 @@
 [gd_scene format=3 uid="uid://dwylrlxy7xcpm"]
 
-[ext_resource type="Texture2D" uid="uid://bvcqaobpmrn3v" path="res://assets/box-placeholder.png" id="1_dqwf4"]
 [ext_resource type="Script" uid="uid://c8344yojwijmt" path="res://scripts/objects/box.gd" id="1_wylty"]
+[ext_resource type="Texture2D" uid="uid://wwfvgrj5ytj2" path="res://assets/box.png" id="2_wylty"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wylty"]
 size = Vector2(14, 14)
 
 [node name="Box" type="RigidBody2D" unique_id=1527440110]
+collision_layer = 33
 mass = 0.1
 lock_rotation = true
 script = ExtResource("1_wylty")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=97281408]
-texture = ExtResource("1_dqwf4")
+texture = ExtResource("2_wylty")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=710800748]
 visible = false

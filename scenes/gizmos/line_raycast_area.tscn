@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dia83gviwlfkh"]
+
+[ext_resource type="Script" uid="uid://chyjxuj8xsfpn" path="res://scripts/objects/line_raycast_area.gd" id="1_h2iao"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_i31h3"]
+b = Vector2(128, 0)
+
+[node name="LineRaycastArea" type="Area2D" unique_id=1101227753]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_h2iao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1027385225]
+shape = SubResource("SegmentShape2D_i31h3")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=746533972]
+visible = false
+target_position = Vector2(128, 0)
+collision_mask = 128
