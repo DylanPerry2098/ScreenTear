@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bhddoo3r6ti84"]
+
+[ext_resource type="Script" uid="uid://c8344yojwijmt" path="res://scripts/objects/box.gd" id="1_7r8i0"]
+[ext_resource type="Texture2D" uid="uid://wwfvgrj5ytj2" path="res://assets/box.png" id="2_fron7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wylty"]
+size = Vector2(14, 14)
+
+[node name="BigBox" type="RigidBody2D" unique_id=1527440110]
+collision_layer = 33
+mass = 0.2
+can_sleep = false
+lock_rotation = true
+script = ExtResource("1_7r8i0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=97281408]
+scale = Vector2(2, 2)
+texture = ExtResource("2_fron7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=710800748]
+visible = false
+position = Vector2(0, 1)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_wylty")
