@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var text:String = "Hello, World!"
+@export_multiline var text:String = "Hello, World!"
 
 @onready var label:Label = %Label
 
