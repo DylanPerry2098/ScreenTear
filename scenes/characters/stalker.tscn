@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://jp3qanwgp7ip" path="res://scripts/enemy_shared/enemy_pathfinding.gd" id="9_ffjl1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5oh04"]
-radius = 4.0
+radius = 8.0
 
 [sub_resource type="Animation" id="Animation_518fa"]
 length = 0.001
@@ -89,6 +89,7 @@ collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_minep")
 chase_state = NodePath("StateMachine/ChaseState")
+speed = 25.0
 state_machine = NodePath("StateMachine")
 animation_player = NodePath("AnimationPlayer")
 pathfinder = NodePath("EnemyPathfinding")
