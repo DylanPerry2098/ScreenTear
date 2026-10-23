@@ -10,6 +10,7 @@ func _ready() -> void:
 
 func set_freeze(b: bool) -> void:
 	frozen = b
+	animation_player.play("frozen") if frozen else animation_player.play("moving")
 
 func _on_body_entered(body: Node) -> void:
 	if body is Player and !body.dying:

@@ -1,5 +1,20 @@
 class_name Player extends CharacterBody2D
 
+const MODERATE_FLICKER_DURATION := 1.0
+const STRONG_FLICKER_DURATION := 1.0
+const MODERATE_FLICKER_TIMINGS := [
+	Vector2(0.18, 0.42),
+	Vector2(0.35, 0.16),
+	Vector2(0.12, 0.5),
+	Vector2(0.28, 0.24),
+]
+const STRONG_FLICKER_TIMINGS := [
+	Vector2(0.08, 0.2),
+	Vector2(0.18, 0.06),
+	Vector2(0.04, 0.26),
+	Vector2(0.12, 0.1),
+]
+
 @export var speed := 500.0
 @export var jump_strength := 1000.0
 @export var gravity := 2000.0
@@ -18,9 +33,14 @@ class_name Player extends CharacterBody2D
 @export var state_fall: State
 @export var state_land: State
 
+@export var flashlighton_sfx: AudioStreamPlayer
+@export var flashlightoff_sfx: AudioStreamPlayer
+
 static var player_instance: Player
 
 var dying := false
+
+static var can_reset_level := true
 
 var frames_off_floor := 0
 var _flashlight_turned_off := false
@@ -74,7 +94,7 @@ func _physics_process(delta: float) -> void:
 	state_machine.physics_update(delta)
 	move_and_slide()
 
-	if !_flashlight_turned_off and state_machine.input_handler.flashlight_pressed():
+	if !_flashlight_turned_off and state_machine.input_handler.flashlight_pressed() and can_reset_level:
 		flashlight_off()
 		
 	for i in get_slide_collision_count():
@@ -90,10 +110,12 @@ func _process(delta: float) -> void:
 func _flashlight_on():
 	_flashlight_turned_off = false
 	LightManager.turn_on_all()
+	flashlighton_sfx.play()
 	
 func flashlight_off():
 	_flashlight_turned_off = true
 	LightManager.turn_off_all()
+	flashlightoff_sfx.play()
 	
 	await get_tree().create_timer(0.5).timeout
 	SceneManager.change_scenes(SceneManager.MainScene.SAME)
@@ -113,3 +135,27 @@ func death():
 	%Illumination.turn_off()
 	await get_tree().create_timer(0.75).timeout 
 	SceneManager.change_scenes(SceneManager.MainScene.SAME)
+
+func flashlight_flicker_off() -> void:
+	_flashlight_turned_off = true
+
+	await _flicker_flashlight(MODERATE_FLICKER_DURATION, MODERATE_FLICKER_TIMINGS)
+	await _flicker_flashlight(STRONG_FLICKER_DURATION, STRONG_FLICKER_TIMINGS)
+
+	%Flashlight.turn_off()
+	%Illumination.turn_off()
+	flashlightoff_sfx.play()
+
+func _flicker_flashlight(duration: float, timings: Array) -> void:
+	var elapsed := 0.0
+	var timing_index := 0
+
+	while elapsed < duration:
+		var timing: Vector2 = timings[timing_index % timings.size()]
+		%Flashlight.turn_on()
+		await get_tree().create_timer(timing.x).timeout
+		%Flashlight.turn_off()
+		await get_tree().create_timer(timing.y).timeout
+
+		elapsed += timing.x + timing.y
+		timing_index += 1

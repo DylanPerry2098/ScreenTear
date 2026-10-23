@@ -6,6 +6,8 @@ class_name OverheadLight extends ToggleableObject
 @export var light_angle_degrees := 90.0
 const LINE_RAYCAST_AREA_SCENE := preload("res://scenes/gizmos/line_raycast_area.tscn")
 
+@export var always_on := false
+
 @onready var tilemap: TileManager = _get_tilemap_in_tree()
 
 var _line_areas: Array[LineRaycastArea] = []
@@ -23,6 +25,8 @@ func _ready() -> void:
 		print("No Attached TileMapLayer On " + self.name)
 		
 	createCone(light_angle_degrees)
+	if always_on:
+		update_active(true)
 	
 func _physics_process(_delta: float) -> void:
 	if tilemap:

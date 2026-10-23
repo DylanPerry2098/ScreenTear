@@ -21,7 +21,8 @@ enum MainScene {
 	HAUNT_ARENA,
 	CUTSCENE,
 	RESPAWN_ONE,
-	RESPAWN_TWO
+	RESPAWN_TWO,
+	MENU
 }
 
 enum UIScene {
@@ -33,18 +34,20 @@ enum UIScene {
 enum ScreenTransitionScene {
 	NONE,
 	FADE,
+	ENDING,
 }
 
 var MAIN_SCENES: Dictionary[MainScene, PackedScene] = {
-
+	MainScene.MENU: preload("res://scenes/levels/main_menu.tscn")
 }
 
 var UI_SCENES: Dictionary[UIScene, PackedScene] = {
-
+	UIScene.MAIN_UI: preload("res://scenes/utils/pause_menu.tscn"),
 }
 
 var SCREEN_TRANSITIONS: Dictionary[ScreenTransitionScene, PackedScene] = {
-	ScreenTransitionScene.FADE: preload("res://scenes/screen_transitions/basic_screen_transition.tscn")
+	ScreenTransitionScene.FADE: preload("res://scenes/screen_transitions/basic_screen_transition.tscn"),
+	ScreenTransitionScene.ENDING: preload("res://scenes/screen_transitions/long_screen_transition.tscn"),
 }
 
 

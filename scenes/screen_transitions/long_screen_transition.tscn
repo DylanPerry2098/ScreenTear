@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://nm1lu42mi3c7"]
+
+[ext_resource type="Script" uid="uid://c4vvjim1gfjsx" path="res://scripts/scene_managment/screen_transitions/long_screen_transition.gd" id="1_81pr2"]
+
+[node name="Long Screen Transition" type="CanvasLayer" unique_id=942951609]
+script = ExtResource("1_81pr2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1648102423]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)

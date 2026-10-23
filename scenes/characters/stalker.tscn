@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://jp3qanwgp7ip" path="res://scripts/enemy_shared/enemy_pathfinding.gd" id="9_ffjl1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5oh04"]
-radius = 4.0
+radius = 8.0
 
 [sub_resource type="Animation" id="Animation_518fa"]
 length = 0.001
@@ -22,6 +22,38 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_minep"]
+resource_name = "frozen"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6f8km"]
+resource_name = "moving"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_e3uwq"]
@@ -44,6 +76,8 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_splne"]
 _data = {
 &"RESET": SubResource("Animation_518fa"),
+&"frozen": SubResource("Animation_minep"),
+&"moving": SubResource("Animation_6f8km"),
 &"spike_attack_normal": SubResource("Animation_e3uwq")
 }
 
@@ -55,6 +89,7 @@ collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_minep")
 chase_state = NodePath("StateMachine/ChaseState")
+speed = 25.0
 state_machine = NodePath("StateMachine")
 animation_player = NodePath("AnimationPlayer")
 pathfinder = NodePath("EnemyPathfinding")
@@ -62,6 +97,7 @@ sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=420065547]
 texture = ExtResource("2_dfw4t")
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=750644205]
 visible = false

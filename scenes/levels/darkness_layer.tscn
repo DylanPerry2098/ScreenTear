@@ -4,6 +4,7 @@
 
 [node name="DarknessLayer" type="ColorRect" unique_id=749041299]
 visible = false
+z_index = -2
 offset_left = -16.0
 offset_top = -16.0
 offset_right = 784.0

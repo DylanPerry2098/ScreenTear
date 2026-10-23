@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://648udyelnum0"]
+
+[ext_resource type="Texture2D" uid="uid://c2hd5vnb8gphd" path="res://assets/character_spritesheet.png" id="1_6pk0l"]
+[ext_resource type="Script" uid="uid://cdikqxsekwebx" path="res://scripts/characters/npc_player.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hover"]
+size = Vector2(32, 48)
+
+[node name="npc_player" type="Node2D" unique_id=1298053650]
+groups = ["npc_player"]
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=715150836]
+texture = ExtResource("1_6pk0l")
+hframes = 8
+vframes = 6
+
+[node name="HoverArea" type="Area2D" parent="." unique_id=1970621500]
+unique_name_in_owner = true
+input_pickable = true
+
+[node name="HoverShape" type="CollisionShape2D" parent="HoverArea" unique_id=1970621501]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_hover")

@@ -8,6 +8,7 @@
 size = Vector2(8, 20)
 
 [node name="RoomTransitionDoor" type="Node2D" unique_id=643625601]
+z_index = -1
 script = ExtResource("1_8vmrx")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1518123628]

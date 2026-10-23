@@ -25,4 +25,6 @@ func _on_area_body_entered(body: Node) -> void:
 		return
 	SceneManager.change_scenes_to_path(
 		_target_scene_instance,
+		SceneManager.UIScene.MAIN_UI,
+		SceneManager.ScreenTransitionScene.FADE,
 	)
