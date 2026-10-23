@@ -9,6 +9,7 @@ size = Vector2(14, 14)
 [node name="Box" type="RigidBody2D" unique_id=1527440110]
 collision_layer = 33
 mass = 0.1
+can_sleep = false
 lock_rotation = true
 script = ExtResource("1_wylty")
 
