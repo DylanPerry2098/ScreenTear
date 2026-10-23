@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cvop5pfgclkcx"]
+
+[ext_resource type="Script" uid="uid://binecmaav6hju" path="res://scripts/scene_managment/ui.gd" id="1_la3kr"]
+[ext_resource type="PackedScene" uid="uid://b3cty4pj6iieo" path="res://scenes/gizmos/flashlight_cursor.tscn" id="2_uvgli"]
+
+[node name="GlobalUI" type="CanvasLayer" unique_id=1226678125]
+layer = 5
+script = ExtResource("1_la3kr")
+
+[node name="FlashlightCursor" parent="." unique_id=1238564414 instance=ExtResource("2_uvgli")]
+visible = false

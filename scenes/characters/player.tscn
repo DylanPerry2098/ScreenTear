@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://be2f24h77roh3" path="res://scenes/gizmos/flashlight.tscn" id="10_7vyk4"]
 [ext_resource type="Texture2D" uid="uid://drp0dedttahbe" path="res://assets/light_point.webp" id="11_2l4js"]
 [ext_resource type="AudioStream" uid="uid://dfnv55tnebrdd" path="res://Audio/SFX/jump_sfx.mp3" id="12_jk2m4"]
+[ext_resource type="AudioStream" uid="uid://b2d01g5667iyx" path="res://Audio/SFX/flashlighton_sfx.mp3" id="13_xhtjm"]
+[ext_resource type="AudioStream" uid="uid://brofchjtd4mrk" path="res://Audio/SFX/flashlightoff_sfx.mp3" id="14_k4v7y"]
+[ext_resource type="Script" uid="uid://b6xjram4ulxgf" path="res://scripts/objects/point_light_source.gd" id="13_point"]
 
 [sub_resource type="Animation" id="Animation_2l4js"]
 length = 0.001
@@ -154,7 +157,7 @@ _data = {
 radius = 4.0
 height = 14.0
 
-[node name="Player" type="CharacterBody2D" unique_id=366328777 node_paths=PackedStringArray("animation_player", "state_machine", "state_idle", "state_run", "state_jump", "state_fall", "state_land")]
+[node name="Player" type="CharacterBody2D" unique_id=366328777 node_paths=PackedStringArray("animation_player", "state_machine", "state_idle", "state_run", "state_jump", "state_fall", "state_land", "flashlighton_sfx", "flashlightoff_sfx")]
 collision_layer = 3
 collision_mask = 65
 script = ExtResource("1_b26j0")
@@ -168,6 +171,8 @@ state_run = NodePath("StateMachine/RunState")
 state_jump = NodePath("StateMachine/JumpState")
 state_fall = NodePath("StateMachine/FallState")
 state_land = NodePath("StateMachine/LandState")
+flashlighton_sfx = NodePath("FlashlightonSfx")
+flashlightoff_sfx = NodePath("FlashlightoffSfx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=343403495]
 unique_name_in_owner = true
@@ -233,6 +238,13 @@ scale = Vector2(0.2, 0.2)
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.74509805)
 texture = ExtResource("11_2l4js")
+script = ExtResource("13_point")
 
 [node name="jumpsfx" type="AudioStreamPlayer" parent="." unique_id=475409433]
 stream = ExtResource("12_jk2m4")
+
+[node name="FlashlightonSfx" type="AudioStreamPlayer" parent="." unique_id=934395325]
+stream = ExtResource("13_xhtjm")
+
+[node name="FlashlightoffSfx" type="AudioStreamPlayer" parent="." unique_id=1387886642]
+stream = ExtResource("14_k4v7y")

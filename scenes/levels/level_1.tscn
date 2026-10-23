@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://c3hrmhinkf4bk"]
 
-[ext_resource type="Script" uid="uid://dbnhd8i0bfe1a" path="res://scripts/level_1.gd" id="1_6761a"]
 [ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="2_nsrm0"]
 [ext_resource type="PackedScene" uid="uid://b4wpuqbsh07t4" path="res://scenes/levels/darkness_layer.tscn" id="2_sk5k4"]
 [ext_resource type="PackedScene" uid="uid://cjowb85tb4dkv" path="res://scenes/gizmos/pressure_plate.tscn" id="3_nsrm0"]
@@ -9,9 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bl7ln7l3qi0g4" path="res://scenes/gizmos/cam_transition_area.tscn" id="5_sk5k4"]
 [ext_resource type="PackedScene" uid="uid://bxv1ksdqyurbf" path="res://scenes/sound/audio_stream_player_bg_music.tscn" id="8_s8va5"]
 [ext_resource type="PackedScene" uid="uid://c5ilmhfephti" path="res://scenes/gizmos/overhead_light.tscn" id="9_dga24"]
+[ext_resource type="Script" uid="uid://cijw3waqmb8dc" path="res://scripts/utils/camera_point.gd" id="9_qxy0u"]
+[ext_resource type="PackedScene" uid="uid://ckfw3i5j7f385" path="res://scenes/utils/pause_menu.tscn" id="10_qxy0u"]
 
 [node name="Level1" type="Node2D" unique_id=330516812]
-script = ExtResource("1_6761a")
 
 [node name="DarknessLayer" parent="." unique_id=749041299 instance=ExtResource("2_sk5k4")]
 
@@ -23,20 +23,17 @@ script = ExtResource("4_oc4kc")
 [node name="Player" parent="." unique_id=366328777 instance=ExtResource("2_nsrm0")]
 position = Vector2(26, 232)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=628639797]
-anchor_mode = 0
-limit_left = 0
-limit_top = 0
-limit_right = 256
-limit_bottom = 256
-
 [node name="CameraTransitions" type="Node2D" parent="." unique_id=1181853484]
 
-[node name="CamTransitionArea1" parent="CameraTransitions" unique_id=2052498669 instance=ExtResource("5_sk5k4")]
+[node name="CamTransitionArea1" parent="CameraTransitions" unique_id=2052498669 node_paths=PackedStringArray("left_cam_point", "right_cam_point") instance=ExtResource("5_sk5k4")]
 position = Vector2(256, 224)
+left_cam_point = NodePath("../../CameraPoint")
+right_cam_point = NodePath("../../CameraPoint2")
 
-[node name="CamTransitionArea2" parent="CameraTransitions" unique_id=1606768270 instance=ExtResource("5_sk5k4")]
+[node name="CamTransitionArea2" parent="CameraTransitions" unique_id=1606768270 node_paths=PackedStringArray("left_cam_point", "right_cam_point") instance=ExtResource("5_sk5k4")]
 position = Vector2(512, 224)
+left_cam_point = NodePath("../../CameraPoint2")
+right_cam_point = NodePath("../../CameraPoint3")
 
 [node name="Boxes" type="Node2D" parent="." unique_id=360941439]
 
@@ -79,5 +76,19 @@ position = Vector2(713, 67)
 [node name="OverheadLight" parent="." unique_id=1548226924 instance=ExtResource("9_dga24")]
 position = Vector2(132, 100)
 
-[connection signal="body_exited" from="CameraTransitions/CamTransitionArea1" to="." method="_on_cam_transition1_area_body_exited"]
-[connection signal="body_exited" from="CameraTransitions/CamTransitionArea2" to="." method="_on_cam_transition2_area_body_exited"]
+[node name="CameraPoint" type="Node2D" parent="." unique_id=350442032]
+position = Vector2(128, 128)
+script = ExtResource("9_qxy0u")
+metadata/_custom_type_script = "uid://cijw3waqmb8dc"
+
+[node name="CameraPoint2" type="Node2D" parent="." unique_id=614585605]
+position = Vector2(384, 128)
+script = ExtResource("9_qxy0u")
+metadata/_custom_type_script = "uid://cijw3waqmb8dc"
+
+[node name="CameraPoint3" type="Node2D" parent="." unique_id=916520767]
+position = Vector2(640, 128)
+script = ExtResource("9_qxy0u")
+metadata/_custom_type_script = "uid://cijw3waqmb8dc"
+
+[node name="PauseMenu" parent="." unique_id=282580624 instance=ExtResource("10_qxy0u")]
