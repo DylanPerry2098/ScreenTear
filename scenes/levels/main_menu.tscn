@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ce1b3ni18fi3c" path="res://scripts/scene_managment/main_menu.gd" id="1_721jg"]
 [ext_resource type="PackedScene" uid="uid://b4wpuqbsh07t4" path="res://scenes/levels/darkness_layer.tscn" id="1_fsby3"]
 [ext_resource type="Texture2D" uid="uid://y6oyhksf6wmd" path="res://assets/torch_light.png" id="2_leamy"]
+[ext_resource type="Texture2D" uid="uid://cbxqv2f0op3so" path="res://assets/flashpoint_logo_1.png" id="4_geflf"]
 
 [node name="MainMenu" type="Control" unique_id=1493056575 node_paths=PackedStringArray("credit_screen")]
 layout_mode = 3
@@ -60,6 +61,7 @@ layout_mode = 2
 text = "QUIT"
 
 [node name="Label" type="Label" parent="." unique_id=814350187]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -71,6 +73,15 @@ offset_bottom = 76.0
 grow_horizontal = 2
 scale = Vector2(1.6236751, 1.6236751)
 text = "SCREENTEAR"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1875677460]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 53.0
+offset_right = 1054.0
+offset_bottom = 309.0
+scale = Vector2(0.19999835, 0.19999835)
+texture = ExtResource("4_geflf")
 
 [node name="CreditScreen" type="ColorRect" parent="." unique_id=575686655]
 visible = false
