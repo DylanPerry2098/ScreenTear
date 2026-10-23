@@ -85,38 +85,38 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 11.574077
+offset_left = 6.01852
 offset_top = 7.9754586
-offset_right = 11.574078
+offset_right = 42.11181
 offset_bottom = 7.97546
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4177784, 0.5936809)
 
-[node name="Button" type="Button" parent="CreditScreen" unique_id=1807601492]
-layout_mode = 0
-offset_left = 24.382723
-offset_top = 8.588956
-offset_right = 42.38272
-offset_bottom = 39.588955
-scale = Vector2(0.23088555, 0.12714565)
-text = "X"
-
 [node name="RichTextLabel" type="RichTextLabel" parent="CreditScreen" unique_id=168815846]
 layout_mode = 0
-offset_left = 12.19136
-offset_top = 13.036808
-offset_right = 28.549387
-offset_bottom = 31.595087
+offset_left = 7.8703723
+offset_top = 9.049079
+offset_right = 231.63583
+offset_bottom = 176.22696
+scale = Vector2(0.15, 0.15)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 2
 bbcode_enabled = true
-text = "Aidan O'Donnell (Ark)
-Dylan Perry
-Hunter Mack (HuJoe)
-Meadow Dexter (GrassBlockMusic)
-Zach Fischer"
+text = "- Aidan O'Donnell (Ark)
+- Dylan Perry
+- Hunter Mack (HuJoe)
+- Meadow Dexter (GrassBlockMusic)
+- Zach Fischer"
 scroll_active = false
+
+[node name="Button" type="Button" parent="CreditScreen" unique_id=1807601492]
+layout_mode = 0
+offset_left = 26.851856
+offset_top = 27.300611
+offset_right = 44.85186
+offset_bottom = 58.300613
+scale = Vector2(0.23088555, 0.12714565)
+text = "X"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
