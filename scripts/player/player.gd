@@ -93,10 +93,12 @@ func _process(delta: float) -> void:
 func _flashlight_on():
 	_flashlight_turned_off = false
 	LightManager.turn_on_all()
+	flashlighton_sfx.play()
 	
 func flashlight_off():
 	_flashlight_turned_off = true
 	LightManager.turn_off_all()
+	flashlightoff_sfx.play()
 	
 	await get_tree().create_timer(0.5).timeout
 	SceneManager.change_scenes(SceneManager.MainScene.SAME)
