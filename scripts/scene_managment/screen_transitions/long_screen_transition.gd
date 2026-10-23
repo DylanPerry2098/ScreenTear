@@ -1,7 +1,7 @@
 extends ScreenTransition
 
-const DELAY_DURATION := 2.0
-const FADE_DURATION := 2.0
+const DELAY_DURATION := 1.0
+const FADE_DURATION := 0.5
 const DELAY_OUT_DURATION := 8.0
 
 @onready var color_rect: ColorRect = $ColorRect

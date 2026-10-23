@@ -2,7 +2,7 @@ extends Node2D
 
 const NPC_PLAYER_SCENE := preload("res://scenes/characters/npc_player.tscn")
 const META_FLASHLIGHT_OFF_DURATION := 15.0
-const DESIRED_NPC_MOUSE_HOVERS := 3
+const DESIRED_NPC_MOUSE_HOVERS := 8
 
 enum EndingSequenceState {
     FALL,

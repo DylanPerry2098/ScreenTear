@@ -1,24 +1,55 @@
 [gd_scene format=3 uid="uid://648udyelnum0"]
 
-[ext_resource type="Texture2D" uid="uid://c2hd5vnb8gphd" path="res://assets/character_spritesheet.png" id="1_6pk0l"]
 [ext_resource type="Script" uid="uid://cdikqxsekwebx" path="res://scripts/characters/npc_player.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dom4eg830ko0i" path="res://assets/crying_sheet.png" id="2_3na6h"]
+[ext_resource type="Texture2D" uid="uid://byg35umvpoj84" path="res://assets/stalker.png" id="3_4yj0p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yj0p"]
+atlas = ExtResource("2_3na6h")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_co0hd"]
+atlas = ExtResource("2_3na6h")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6pk0l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yj0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_co0hd")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 3.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hover"]
-size = Vector2(32, 48)
+size = Vector2(64, 64)
 
 [node name="npc_player" type="Node2D" unique_id=1298053650]
-groups = ["npc_player"]
 script = ExtResource("1_script")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=715150836]
-texture = ExtResource("1_6pk0l")
-hframes = 8
-vframes = 6
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2072199245]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_6pk0l")
+autoplay = "default"
+frame_progress = 0.5990019
 
 [node name="HoverArea" type="Area2D" parent="." unique_id=1970621500]
 unique_name_in_owner = true
-input_pickable = true
+position = Vector2(0, -8)
 
 [node name="HoverShape" type="CollisionShape2D" parent="HoverArea" unique_id=1970621501]
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_hover")
+
+[node name="StalkerSprite" type="Sprite2D" parent="." unique_id=930920391]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -8)
+texture = ExtResource("3_4yj0p")
+vframes = 2
