@@ -40,7 +40,7 @@ var MAIN_SCENES: Dictionary[MainScene, PackedScene] = {
 }
 
 var UI_SCENES: Dictionary[UIScene, PackedScene] = {
-
+	UIScene.MAIN_UI: preload("res://scenes/utils/pause_menu.tscn"),
 }
 
 var SCREEN_TRANSITIONS: Dictionary[ScreenTransitionScene, PackedScene] = {

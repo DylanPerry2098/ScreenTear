@@ -12,7 +12,7 @@ func _ready() -> void:
 	label.visible = false
 	label.text = text
 	await get_tree().physics_frame
-	label.reparent(UserInterface.instance)
+	label.reparent(GlobalUI)
 	
 
 func _on_body_entered(_body:Node2D):

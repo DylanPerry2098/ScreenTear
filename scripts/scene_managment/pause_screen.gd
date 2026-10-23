@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name UserInterface extends CanvasLayer
 
 @onready var menu = $PauseScreen
 var paused := false
