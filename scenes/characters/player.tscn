@@ -242,7 +242,7 @@ script = ExtResource("13_point")
 
 [node name="jumpsfx" type="AudioStreamPlayer" parent="." unique_id=475409433]
 stream = ExtResource("12_jk2m4")
-volume_db = -20.0
+volume_db = -14.85
 
 [node name="FlashlightonSfx" type="AudioStreamPlayer" parent="." unique_id=934395325]
 stream = ExtResource("13_xhtjm")

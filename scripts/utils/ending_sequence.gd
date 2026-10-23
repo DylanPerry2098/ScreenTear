@@ -15,7 +15,7 @@ enum EndingSequenceState {
 
 var state = EndingSequenceState.LAND
 
-var seconds_until_flashlight_off = 3.0
+var seconds_until_flashlight_off = 15.0
 var seconds_until_meta_flashlight_on := META_FLASHLIGHT_OFF_DURATION
 
 func _ready():

@@ -13,12 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://cufsw4pstk3lr" path="res://scenes/gizmos/door.tscn" id="8_apo5x"]
 [ext_resource type="PackedScene" uid="uid://btbcbic8sh261" path="res://scenes/gizmos/room_transition_door.tscn" id="8_pimnq"]
 [ext_resource type="PackedScene" uid="uid://c5ilmhfephti" path="res://scenes/gizmos/overhead_light.tscn" id="10_josfm"]
-[ext_resource type="PackedScene" uid="uid://bxv1ksdqyurbf" path="res://scenes/sound/audio_stream_player_bg_music.tscn" id="12_lgrx1"]
 
 [node name="Level3" type="Node2D" unique_id=330516812]
 
 [node name="DarknessLayer" parent="." unique_id=749041299 instance=ExtResource("1_f6egh")]
-visible = true
 offset_right = 272.0
 offset_bottom = 1040.0
 
@@ -233,8 +231,6 @@ metadata/_custom_type_script = "uid://cijw3waqmb8dc"
 position = Vector2(128, 896)
 script = ExtResource("6_ugcn1")
 metadata/_custom_type_script = "uid://cijw3waqmb8dc"
-
-[node name="AudioStreamPlayer_BGMusic" parent="." unique_id=1090977874 instance=ExtResource("12_lgrx1")]
 
 [node name="RoomTransitionDoor" parent="." unique_id=643625601 instance=ExtResource("8_pimnq")]
 position = Vector2(40, 1008)
