@@ -10,7 +10,13 @@ func _ready() -> void:
 
 func set_freeze(b: bool) -> void:
 	frozen = b
+	%Area2D.monitoring = !b
 	animation_player.play("frozen") if frozen else animation_player.play("moving")
+
+	if !b:
+		for body in %Area2D.get_overlapping_bodies():
+			if body is Player and !body.dying:
+				body.death()
 
 func _on_body_entered(body: Node) -> void:
 	if body is Player and !body.dying:

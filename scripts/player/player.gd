@@ -118,7 +118,7 @@ func flashlight_off():
 	flashlightoff_sfx.play()
 	
 	await get_tree().create_timer(0.5).timeout
-	SceneManager.change_scenes(SceneManager.MainScene.SAME)
+	SceneManager.change_scenes(SceneManager.MainScene.SAME, SceneManager.UIScene.MAIN_UI)
 
 
 func death():
