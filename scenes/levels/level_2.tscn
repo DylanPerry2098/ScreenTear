@@ -65,11 +65,19 @@ connected_obj = NodePath("../../Gates/Door2")
 position = Vector2(217, 240)
 connected_obj = NodePath("../../Gates/Door")
 
-[node name="GoalPlaceholder" type="Node2D" parent="." unique_id=1117480912]
-position = Vector2(368, 57)
+[node name="Label" parent="Sign" index="2" unique_id=262790553]
+visible = true
+offset_left = -100.0
+offset_top = -24.0
+offset_right = 25.0
+offset_bottom = 13.0
+text = "Don't turn back"
+metadata/_edit_use_anchors_ = true
 
 [node name="RoomTransitionDoor" parent="." unique_id=643625601 instance=ExtResource("10_qsp8v")]
 position = Vector2(369, 80)
 target_scene = "uid://p0qd0f4wx1hs"
 
 [connection signal="body_exited" from="CameraTransitions/CamTransitionArea" to="." method="_on_cam_transition1_area_body_exited"]
+
+[editable path="Sign"]

@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
-const MODERATE_FLICKER_DURATION := 1.0
-const STRONG_FLICKER_DURATION := 1.0
+const MODERATE_FLICKER_DURATION := 15.0
+const STRONG_FLICKER_DURATION := 8.0
 const MODERATE_FLICKER_TIMINGS := [
 	Vector2(0.18, 0.42),
 	Vector2(0.35, 0.16),
@@ -118,7 +118,7 @@ func flashlight_off():
 	flashlightoff_sfx.play()
 	
 	await get_tree().create_timer(0.5).timeout
-	SceneManager.change_scenes(SceneManager.MainScene.SAME)
+	SceneManager.change_scenes(SceneManager.MainScene.SAME, SceneManager.UIScene.MAIN_UI)
 
 
 func death():

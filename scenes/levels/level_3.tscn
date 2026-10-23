@@ -85,6 +85,9 @@ position = Vector2(221, 384)
 [node name="Door2" parent="Gates" unique_id=1787226029 instance=ExtResource("8_apo5x")]
 position = Vector2(221, 641)
 
+[node name="Door3" parent="Gates" unique_id=1745340080 instance=ExtResource("8_apo5x")]
+position = Vector2(221, 896)
+
 [node name="Door4" parent="Gates" unique_id=1053717152 instance=ExtResource("8_apo5x")]
 position = Vector2(80, 96)
 

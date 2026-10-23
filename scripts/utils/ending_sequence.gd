@@ -2,7 +2,7 @@ extends Node2D
 
 const NPC_PLAYER_SCENE := preload("res://scenes/characters/npc_player.tscn")
 const META_FLASHLIGHT_OFF_DURATION := 15.0
-const DESIRED_NPC_MOUSE_HOVERS := 3
+const DESIRED_NPC_MOUSE_HOVERS := 8
 
 enum EndingSequenceState {
     FALL,
@@ -15,7 +15,7 @@ enum EndingSequenceState {
 
 var state = EndingSequenceState.LAND
 
-var seconds_until_flashlight_off = 3.0
+var seconds_until_flashlight_off = 15.0
 var seconds_until_meta_flashlight_on := META_FLASHLIGHT_OFF_DURATION
 
 func _ready():
