@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://b4wpuqbsh07t4" path="res://scenes/levels/darkness_layer.tscn" id="1_fsby3"]
 [ext_resource type="Texture2D" uid="uid://y6oyhksf6wmd" path="res://assets/torch_light.png" id="2_leamy"]
 [ext_resource type="Texture2D" uid="uid://cbxqv2f0op3so" path="res://assets/flashpoint_logo_1.png" id="4_geflf"]
+[ext_resource type="AudioStream" uid="uid://byx4qch2avb44" path="res://Audio/SFX/menuselection_sfx.mp3" id="5_keln3"]
+[ext_resource type="AudioStream" uid="uid://ksysdi4k8rb6" path="res://Audio/SFX/menunav_sfx.mp3" id="6_crctu"]
 
-[node name="MainMenu" type="Control" unique_id=1493056575 node_paths=PackedStringArray("credit_screen")]
+[node name="MainMenu" type="Control" unique_id=1493056575 node_paths=PackedStringArray("credit_screen", "button_click_sfx", "button_hover_sfx")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +17,8 @@ grow_vertical = 2
 script = ExtResource("1_721jg")
 credit_screen = NodePath("CreditScreen")
 target_scene = "uid://04h040d32cfu"
+button_click_sfx = NodePath("ButtonClickSFX")
+button_hover_sfx = NodePath("ButtonHoverSFX")
 
 [node name="DarknessLayer" parent="." unique_id=749041299 instance=ExtResource("1_fsby3")]
 layout_mode = 0
@@ -129,7 +133,18 @@ offset_bottom = 58.300613
 scale = Vector2(0.23088555, 0.12714565)
 text = "X"
 
+[node name="ButtonClickSFX" type="AudioStreamPlayer" parent="." unique_id=1455825328]
+stream = ExtResource("5_keln3")
+
+[node name="ButtonHoverSFX" type="AudioStreamPlayer" parent="." unique_id=524974792]
+stream = ExtResource("6_crctu")
+volume_db = -1.0
+
+[connection signal="mouse_entered" from="VBoxContainer/PlayButton" to="." method="_on_play_button_hovered"]
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_hovered"]
 [connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_hovered"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="CreditScreen/Button" to="." method="_on_credits_close_button_hovered"]
 [connection signal="pressed" from="CreditScreen/Button" to="." method="_on_credit_close_button_pressed"]

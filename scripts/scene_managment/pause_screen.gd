@@ -6,6 +6,9 @@ var paused := false
 var target_scene := "res://scenes/levels/main_menu.tscn"
 var _target_scene_instance: Node
 
+@export var button_click_sfx: AudioStreamPlayer
+@export var button_hover_sfx: AudioStreamPlayer
+
 func _ready() -> void:
 	var a: PackedScene = load(target_scene)
 	_target_scene_instance = a.instantiate()
@@ -28,10 +31,15 @@ func _toggle_pause():
 
 
 func _on_menu_button_pressed() -> void:
+	button_click_sfx.play()
 	SceneManager.change_scenes_to_path(_target_scene_instance)
 
 
 func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
+	button_click_sfx.play()
 	DisplayServer.window_set_mode(
 		DisplayServer.WINDOW_MODE_FULLSCREEN if toggled_on else 
 		DisplayServer.WINDOW_MODE_WINDOWED)
+
+func _on_menu_button_hovered() -> void:
+	button_hover_sfx.play()
