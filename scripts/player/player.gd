@@ -18,6 +18,9 @@ class_name Player extends CharacterBody2D
 @export var state_fall: State
 @export var state_land: State
 
+@export var flashlighton_sfx: AudioStreamPlayer
+@export var flashlightoff_sfx: AudioStreamPlayer
+
 static var player_instance: Player
 
 var dying := false

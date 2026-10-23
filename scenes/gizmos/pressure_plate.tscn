@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://cjowb85tb4dkv"]
 
 [ext_resource type="Script" uid="uid://d055aiaxjio7l" path="res://scripts/objects/pressure_plate.gd" id="1_jqx86"]
+[ext_resource type="AudioStream" uid="uid://bgtymqdm62xo4" path="res://Audio/SFX/buttonpush_sfx.mp3" id="2_0g30i"]
 [ext_resource type="Texture2D" uid="uid://l7r2so1x0s58" path="res://assets/plate_unpressed.png" id="2_qmick"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
 size = Vector2(11, 7)
 
+[node name="PressurePlate" type="StaticBody2D" unique_id=18738573 node_paths=PackedStringArray("buttonpush_sfx")]
+script = ExtResource("1_jqx86")
+buttonpush_sfx = NodePath("ButtonpushSfx")
 [node name="PressurePlate" type="StaticBody2D" unique_id=18738573 node_paths=PackedStringArray("area_2d")]
 script = ExtResource("1_jqx86")
 area_2d = NodePath("Area2D")
@@ -13,6 +17,9 @@ area_2d = NodePath("Area2D")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1121584185]
 texture = ExtResource("2_qmick")
 offset = Vector2(7, -3)
+
+[node name="ButtonpushSfx" type="AudioStreamPlayer" parent="." unique_id=117622658]
+stream = ExtResource("2_0g30i")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2003402786]
 unique_name_in_owner = true
