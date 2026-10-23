@@ -4,6 +4,9 @@ extends Control
 @export_file("*.tscn") var target_scene: String
 var _target_scene_instance: Node
 
+@export var button_click_sfx: AudioStreamPlayer
+@export var button_hover_sfx: AudioStreamPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if !credit_screen:
@@ -23,17 +26,31 @@ func _toggle_credit_screen(bl: bool) -> void:
 
 
 func _on_play_button_pressed() -> void:
+	button_click_sfx.play()
 	GlobalAudioManager.play_track(0)
 	SceneManager.change_scenes_to_path(_target_scene_instance)
 
 
 func _on_credits_button_pressed() -> void:
+	button_click_sfx.play()
 	_toggle_credit_screen(true)
 
-
 func _on_quit_button_pressed() -> void:
+	button_click_sfx.play()
 	get_tree().quit()
 
-
 func _on_credit_close_button_pressed() -> void:
+	button_click_sfx.play()
 	_toggle_credit_screen(false)
+
+func _on_play_button_hovered() -> void:
+	button_hover_sfx.play()
+
+func _on_credits_button_hovered() -> void:
+	button_hover_sfx.play()
+
+func _on_quit_button_hovered() -> void:
+	button_hover_sfx.play()
+	
+func _on_credits_close_button_hovered() -> void:
+	button_hover_sfx.play()

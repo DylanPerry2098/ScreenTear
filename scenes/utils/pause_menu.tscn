@@ -1,13 +1,17 @@
 [gd_scene format=3 uid="uid://ckfw3i5j7f385"]
 
 [ext_resource type="Script" uid="uid://cd6yn3bypa2d6" path="res://scripts/scene_managment/pause_screen.gd" id="1_toapa"]
+[ext_resource type="AudioStream" uid="uid://byx4qch2avb44" path="res://Audio/SFX/menuselection_sfx.mp3" id="2_oshs0"]
+[ext_resource type="AudioStream" uid="uid://ksysdi4k8rb6" path="res://Audio/SFX/menunav_sfx.mp3" id="3_fg0qv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o8emw"]
 light_mode = 1
 
-[node name="PauseMenu" type="CanvasLayer" unique_id=282580624]
+[node name="PauseMenu" type="CanvasLayer" unique_id=282580624 node_paths=PackedStringArray("button_click_sfx", "button_hover_sfx")]
 process_mode = 3
 script = ExtResource("1_toapa")
+button_click_sfx = NodePath("ButtonClickSFX")
+button_hover_sfx = NodePath("ButtonHoverSFX")
 
 [node name="PauseScreen" type="ColorRect" parent="." unique_id=2120817531]
 process_mode = 2
@@ -75,5 +79,13 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 11
 text = "FULLSCREEN"
 
+[node name="ButtonClickSFX" type="AudioStreamPlayer" parent="." unique_id=394210631]
+stream = ExtResource("2_oshs0")
+
+[node name="ButtonHoverSFX" type="AudioStreamPlayer" parent="." unique_id=1412203763]
+stream = ExtResource("3_fg0qv")
+volume_db = -1.0
+
+[connection signal="mouse_entered" from="PauseScreen/MenuButton" to="." method="_on_menu_button_hovered"]
 [connection signal="pressed" from="PauseScreen/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="toggled" from="PauseScreen/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
