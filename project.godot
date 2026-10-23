@@ -25,6 +25,7 @@ SceneManager="*uid://cytegabay7iaw"
 TileMapManager="*uid://cx2nbot61t7wu"
 LightManager="*uid://bwidfye3ln7d7"
 GlobalUI="*uid://cvop5pfgclkcx"
+GlobalAudioManager="*uid://03634mdw8ysr"
 
 [display]
 

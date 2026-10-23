@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://dpgbf5745cfw5" path="res://scripts/objects/tile_manager.gd" id="3_hq32h"]
 [ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="4_a381f"]
 [ext_resource type="PackedScene" uid="uid://bl7ln7l3qi0g4" path="res://scenes/gizmos/cam_transition_area.tscn" id="5_g1ai2"]
-[ext_resource type="PackedScene" uid="uid://bxv1ksdqyurbf" path="res://scenes/sound/audio_stream_player_bg_music.tscn" id="6_fwulr"]
 [ext_resource type="Script" uid="uid://cijw3waqmb8dc" path="res://scripts/utils/camera_point.gd" id="7_i403b"]
 [ext_resource type="PackedScene" uid="uid://btbcbic8sh261" path="res://scenes/gizmos/room_transition_door.tscn" id="8_2l0hg"]
 
@@ -35,8 +34,6 @@ right_cam_point = NodePath("../../CameraPoint3")
 
 [node name="GoalPlaceholder" type="Node2D" parent="." unique_id=391314156]
 position = Vector2(713, 67)
-
-[node name="AudioStreamPlayer_BGMusic" parent="." unique_id=1090977874 instance=ExtResource("6_fwulr")]
 
 [node name="CameraPoint" type="Node2D" parent="." unique_id=350442032]
 position = Vector2(128, 128)

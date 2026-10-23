@@ -4,9 +4,12 @@
 [ext_resource type="TileSet" uid="uid://dts5m0ui4v7ai" path="res://resources/main_tileset.tres" id="2_bxnd3"]
 [ext_resource type="Script" uid="uid://dpgbf5745cfw5" path="res://scripts/objects/tile_manager.gd" id="3_4dtcu"]
 [ext_resource type="PackedScene" uid="uid://beyip80fsaqxw" path="res://scenes/characters/player.tscn" id="4_m4b5s"]
-[ext_resource type="PackedScene" uid="uid://bxv1ksdqyurbf" path="res://scenes/sound/audio_stream_player_bg_music.tscn" id="6_40q01"]
 [ext_resource type="Script" uid="uid://cijw3waqmb8dc" path="res://scripts/utils/camera_point.gd" id="7_7dl05"]
+[ext_resource type="Script" uid="uid://dxt2phvp4c81o" path="res://scripts/objects/audio_trigger.gd" id="7_euu2r"]
 [ext_resource type="PackedScene" uid="uid://btbcbic8sh261" path="res://scenes/gizmos/room_transition_door.tscn" id="8_j05cy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i31h3"]
+size = Vector2(20, 34)
 
 [node name="Level Intro" type="Node2D" unique_id=330516812]
 
@@ -23,8 +26,6 @@ position = Vector2(128, 128)
 [node name="GoalPlaceholder" type="Node2D" parent="." unique_id=391314156]
 position = Vector2(713, 67)
 
-[node name="AudioStreamPlayer_BGMusic" parent="." unique_id=1090977874 instance=ExtResource("6_40q01")]
-
 [node name="CameraPoint" type="Node2D" parent="." unique_id=350442032]
 position = Vector2(128, 128)
 script = ExtResource("7_7dl05")
@@ -32,3 +33,13 @@ metadata/_custom_type_script = "uid://cijw3waqmb8dc"
 
 [node name="RoomTransitionDoor" parent="." unique_id=643625601 instance=ExtResource("8_j05cy")]
 position = Vector2(232, 144)
+target_scene = "uid://c3hrmhinkf4bk"
+
+[node name="AudioTrigger" type="Area2D" parent="." unique_id=1242173647]
+script = ExtResource("7_euu2r")
+track_index = 1
+metadata/_custom_type_script = "uid://dxt2phvp4c81o"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AudioTrigger" unique_id=1334118087]
+position = Vector2(128, 128)
+shape = SubResource("RectangleShape2D_i31h3")

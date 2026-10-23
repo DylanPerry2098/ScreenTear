@@ -23,6 +23,7 @@ func _toggle_credit_screen(bl: bool) -> void:
 
 
 func _on_play_button_pressed() -> void:
+	GlobalAudioManager.play_track(0)
 	SceneManager.change_scenes_to_path(_target_scene_instance)
 
 
