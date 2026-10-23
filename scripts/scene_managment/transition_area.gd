@@ -141,7 +141,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		SceneManager.change_scenes_to_path(
 			_target_scene_instance,
-			SceneManager.UIScene.MAIN_UI,
+			SceneManager.UIScene.NONE,
 			SceneManager.ScreenTransitionScene.FADE,
 		)
 	else:

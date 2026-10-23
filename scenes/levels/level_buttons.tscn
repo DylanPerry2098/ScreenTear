@@ -73,10 +73,10 @@ always_on = true
 position = Vector2(80, 168)
 
 [node name="Box2" parent="." unique_id=1648142018 instance=ExtResource("12_uxwop")]
-position = Vector2(384, 224)
+position = Vector2(360, 88)
 
 [node name="Box3" parent="." unique_id=1901043987 instance=ExtResource("12_uxwop")]
-position = Vector2(472, 224)
+position = Vector2(312, 136)
 
 [node name="OverheadLight2" parent="." unique_id=135461214 instance=ExtResource("11_q686x")]
 position = Vector2(80, 112)

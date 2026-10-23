@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dwylrlxy7xcpm" path="res://scenes/gizmos/box.tscn" id="11_j3eld"]
 [ext_resource type="PackedScene" uid="uid://d0o1gvwqwdbmv" path="res://scenes/characters/stalker.tscn" id="12_kuphi"]
 [ext_resource type="Script" uid="uid://dbmglsbafyfws" path="res://scripts/objects/activate_enemy_area.gd" id="13_y2px5"]
+[ext_resource type="Script" uid="uid://dxt2phvp4c81o" path="res://scripts/objects/audio_trigger.gd" id="14_j3eld"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_i31h3"]
 a = Vector2(0, -24)
@@ -21,6 +22,9 @@ b = Vector2(0, 24)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_y2px5"]
 a = Vector2(24, 0)
 b = Vector2(-24, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncnqn"]
+size = Vector2(42, 50)
 
 [node name="Level Buttons" type="Node2D" unique_id=330516812]
 
@@ -66,6 +70,7 @@ metadata/_custom_type_script = "uid://cijw3waqmb8dc"
 
 [node name="RoomTransitionDoor" parent="." unique_id=643625601 instance=ExtResource("7_y2px5")]
 position = Vector2(728, 96)
+target_scene = "uid://c3hrmhinkf4bk"
 
 [node name="Door" parent="." unique_id=1063754324 instance=ExtResource("8_bs1av")]
 position = Vector2(232, 48)
@@ -146,3 +151,13 @@ metadata/_custom_type_script = "uid://dbmglsbafyfws"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActivateEnemyArea2" unique_id=653265279]
 shape = SubResource("SegmentShape2D_y2px5")
+
+[node name="AudioTrigger" type="Area2D" parent="." unique_id=1002999437]
+position = Vector2(88, 80)
+script = ExtResource("14_j3eld")
+track_index = 2
+metadata/_custom_type_script = "uid://dxt2phvp4c81o"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AudioTrigger" unique_id=1599436222]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_ncnqn")

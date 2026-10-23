@@ -134,7 +134,7 @@ func death():
 	
 	%Illumination.turn_off()
 	await get_tree().create_timer(0.75).timeout 
-	SceneManager.change_scenes(SceneManager.MainScene.SAME)
+	SceneManager.change_scenes(SceneManager.MainScene.SAME, SceneManager.UIScene.MAIN_UI)
 
 func flashlight_flicker_off() -> void:
 	_flashlight_turned_off = true

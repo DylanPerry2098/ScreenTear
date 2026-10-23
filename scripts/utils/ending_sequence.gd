@@ -21,7 +21,7 @@ var seconds_until_meta_flashlight_on := META_FLASHLIGHT_OFF_DURATION
 func _ready():
     # Disable level reset and pausing
     Player.can_reset_level = false
-    ## TODO: disable pausing
+    GlobalAudioManager.stop_track()
 
 func _physics_process(delta: float) -> void:
     match state:

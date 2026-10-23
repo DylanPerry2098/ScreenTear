@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://cijw3waqmb8dc"
 
 [node name="RoomTransitionDoor" parent="." unique_id=643625601 instance=ExtResource("8_j05cy")]
 position = Vector2(232, 144)
-target_scene = "uid://c3hrmhinkf4bk"
+target_scene = "uid://bsfcwr5hfl4ut"
 
 [node name="AudioTrigger" type="Area2D" parent="." unique_id=1242173647]
 script = ExtResource("7_euu2r")

@@ -9,6 +9,7 @@ var _target_scene_instance: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	if !credit_screen:
 		push_error("No Attached Credit Screen On " + self.name)
 		return
@@ -18,6 +19,7 @@ func _ready() -> void:
 		return
 	var a: PackedScene = load(target_scene)
 	_target_scene_instance = a.instantiate()
+	GlobalAudioManager.play_track(0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _toggle_credit_screen(bl: bool) -> void:

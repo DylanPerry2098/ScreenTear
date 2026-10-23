@@ -62,6 +62,7 @@ position = Vector2(72, 112)
 
 [node name="RoomTransitionDoor" parent="." unique_id=643625601 instance=ExtResource("8_5xm6s")]
 position = Vector2(664, 208)
+target_scene = "uid://c73jx3vra6fau"
 
 [node name="PressurePlates" type="Node2D" parent="." unique_id=1592969455]
 

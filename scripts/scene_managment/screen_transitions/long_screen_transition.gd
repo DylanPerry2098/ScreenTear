@@ -18,7 +18,7 @@ func fade_in():
 	_play_tween(1.0, "fade_in_finished")
 
 func fade_out():
-	await get_tree().create_timer(DELAY_OUT_DURATION).timeout
+	
 	GlobalUI.get_child(0).toggle_spotlight_mode(false)
 	_play_tween(0.0, "fade_out_finished")
 
@@ -31,5 +31,6 @@ func _play_tween(target_alpha: float, finished_signal: String):
 	_tween.finished.connect(func():
 		if target_alpha <= 0.0:
 			color_rect.visible = false
+		await get_tree().create_timer(DELAY_OUT_DURATION).timeout
 		emit_signal(finished_signal)
 	)
