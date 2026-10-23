@@ -3,6 +3,13 @@ extends CanvasLayer
 @onready var menu = $PauseScreen
 var paused := false
 
+var target_scene := "res://scenes/levels/main_menu.tscn"
+var _target_scene_instance: Node
+
+func _ready() -> void:
+	var a: PackedScene = load(target_scene)
+	_target_scene_instance = a.instantiate()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -21,7 +28,7 @@ func _toggle_pause():
 
 
 func _on_menu_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/levels/main_menu.tscn")
+	SceneManager.change_scenes_to_path(_target_scene_instance)
 
 
 func _on_fullscreen_button_toggled(toggled_on: bool) -> void:

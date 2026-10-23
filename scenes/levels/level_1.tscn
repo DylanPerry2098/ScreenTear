@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bxv1ksdqyurbf" path="res://scenes/sound/audio_stream_player_bg_music.tscn" id="8_s8va5"]
 [ext_resource type="PackedScene" uid="uid://c5ilmhfephti" path="res://scenes/gizmos/overhead_light.tscn" id="9_dga24"]
 [ext_resource type="Script" uid="uid://cijw3waqmb8dc" path="res://scripts/utils/camera_point.gd" id="9_qxy0u"]
+[ext_resource type="PackedScene" uid="uid://ckfw3i5j7f385" path="res://scenes/utils/pause_menu.tscn" id="10_qxy0u"]
 
 [node name="Level1" type="Node2D" unique_id=330516812]
 
@@ -89,3 +90,5 @@ metadata/_custom_type_script = "uid://cijw3waqmb8dc"
 position = Vector2(640, 128)
 script = ExtResource("9_qxy0u")
 metadata/_custom_type_script = "uid://cijw3waqmb8dc"
+
+[node name="PauseMenu" parent="." unique_id=282580624 instance=ExtResource("10_qxy0u")]
